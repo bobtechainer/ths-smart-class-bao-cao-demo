@@ -1,0 +1,818 @@
+<meta charset="utf-8">
+<title>Minh Anh’s Lesson Log</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand-25:#F6FAFE; --brand-50:#EEF5FC; --brand-100:#DDEBFA; --brand-200:#BED9F6;
+    --brand-300:#96C6F0; --brand-400:#70B0EA; --brand-500:#4A97E0; --brand-600:#237BD3;
+    --brand-700:#0060A6; --brand-800:#053A6B; --brand-900:#041F4A;
+    --gray-25:#FCFCFD; --gray-50:#F9FAFB; --gray-100:#F2F4F7; --gray-200:#EAECF0;
+    --gray-300:#D0D5DD; --gray-400:#98A2B3; --gray-500:#667085; --gray-600:#475467;
+    --gray-700:#344054; --gray-900:#101828;
+    --success-50:#ECFDF3; --success-100:#D1FADF; --success-500:#12B76A; --success-600:#039855; --success-700:#027A48;
+    --error-50:#FEF3F2; --error-100:#FEE4E2; --error-400:#F97066; --error-600:#D92D20; --error-700:#B42318;
+    --warning-50:#FFF5E7; --warning-100:#FFE9CC; --warning-500:#FFA23A; --warning-600:#E88616; --warning-700:#BA670C;
+    --teal-600:#0E9384; --violet-50:#F5F3FF; --violet-100:#ECE9FE; --violet-600:#7839EE; --pink-50:#FDF2FA;
+    --text-primary:#101828; --text-secondary:#475467; --text-tertiary:#667085;
+    --shadow-xs:0 1px 2px 0 rgba(10,13,18,.05);
+    --shadow-sm:0 1px 3px 0 rgba(10,13,18,.10),0 1px 2px -1px rgba(10,13,18,.10);
+    --shadow-lg:0 12px 16px -4px rgba(10,13,18,.08),0 4px 6px -2px rgba(10,13,18,.03);
+    --shadow-xl:0 20px 40px rgba(10,13,18,.10);
+    --ring:0 0 0 4px rgba(35,123,211,.20);
+    --font:'SFUIText','Be Vietnam Pro','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --move:cubic-bezier(.2,.7,.2,1);
+    --pop:cubic-bezier(.34,1.56,.64,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--gray-50);color:var(--text-primary);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  svg{display:block} .num{font-variant-numeric:tabular-nums}
+  :focus-visible{outline:none;box-shadow:var(--ring);border-radius:10px}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+  /* ---------- topbar ---------- */
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-200)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:18px;max-width:1120px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:var(--brand-900);flex:none;white-space:nowrap}
+  .logo>svg{width:34px;height:34px;flex:none}
+  .subnav{display:flex;gap:2px;flex:1 1 auto;min-width:0;justify-content:center;overflow-x:auto;scrollbar-width:none}
+  .subnav::-webkit-scrollbar{display:none}
+  .subnav a{font-size:13.5px;color:var(--text-tertiary);text-decoration:none;padding:6px 9px;border-radius:8px;white-space:nowrap;transition:color .16s,background .16s}
+  .subnav a:hover{background:var(--gray-100);color:var(--text-primary)}
+  .subnav a.on{color:var(--brand-700);background:var(--brand-50);font-weight:600}
+  .printbtn{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:var(--text-secondary);
+    border:1px solid var(--gray-200);border-radius:9px;padding:6px 12px;background:#fff;transition:border-color .16s,color .16s}
+  .printbtn:hover{border-color:var(--brand-300);color:var(--brand-700)}
+  .printbtn svg{width:15px;height:15px;stroke:currentColor}
+  .live-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--gray-200);background:var(--gray-50);color:var(--gray-600);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:500}
+  .live-badge .dot{width:7px;height:7px;border-radius:99px;background:var(--success-500)}
+  .topright{display:flex;align-items:center;gap:10px;flex:none}
+  .live-badge{white-space:nowrap}
+  .langsw{display:inline-flex;gap:2px;background:var(--gray-100);border-radius:8px;padding:2px;flex:none}
+  .langsw a{font-size:12.5px;font-weight:600;color:var(--text-tertiary);text-decoration:none;padding:4px 10px;border-radius:6px;transition:background .16s,color .16s}
+  .langsw a:hover{color:var(--text-primary)}
+  .langsw a.on{background:#fff;color:var(--brand-700);box-shadow:var(--shadow-xs)}
+  .prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--brand-500),var(--brand-700));transition:width .1s linear}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--gray-200);
+    background:
+      radial-gradient(at -5% -10%,var(--warning-50) 0%,transparent 38%),
+      radial-gradient(at 105% 0%,var(--pink-50) 0%,transparent 36%),
+      radial-gradient(at 100% 108%,var(--brand-50) 0%,transparent 40%),
+      radial-gradient(at -10% 110%,var(--violet-50) 0%,transparent 38%),#ffffff}
+  .blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(26px,-18px) scale(1.08)}}
+  .hero .wrap{position:relative;z-index:1;display:flex;align-items:center;gap:44px;padding-top:52px;padding-bottom:52px;flex-wrap:wrap}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-600)}
+  .hero h1{font-size:30px;line-height:1.3;font-weight:800;letter-spacing:-.02em;margin:10px 0 8px;max-width:540px;text-wrap:balance}
+  .hero h1 .hl{color:var(--brand-600)}
+  .hero .sub{color:var(--text-secondary);font-size:15px;max-width:490px}
+  .meta{margin-top:8px;font-size:13.5px;color:var(--text-tertiary)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--gray-200);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--text-secondary);box-shadow:var(--shadow-xs)}
+  .chip b{color:var(--text-primary)}
+  .chip .sw{width:8px;height:8px;border-radius:99px}
+  .ringbox{text-align:center;flex:none;margin:0 auto}
+  .ringtabs{display:inline-flex;gap:2px;background:var(--gray-100);border-radius:999px;padding:3px;margin-bottom:14px}
+  .ringtabs button{font-size:12.5px;font-weight:600;color:var(--text-tertiary);padding:5px 13px;border-radius:999px;transition:color .18s,background .18s}
+  .ringtabs button[aria-selected="true"]{background:#fff;color:var(--brand-700);box-shadow:var(--shadow-xs)}
+  .ringbox .cap{font-size:13px;color:var(--text-tertiary);margin-top:10px;max-width:210px;min-height:40px}
+
+  /* ---------- sections ---------- */
+  section{margin-top:48px;scroll-margin-top:80px}
+  .sec-head{margin-bottom:16px;max-width:660px}
+  .sec-kicker{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--brand-600)}
+  .sec-head h2{font-size:21px;font-weight:700;letter-spacing:-.01em;margin-top:4px;text-wrap:balance}
+  .sec-head p{color:var(--text-secondary);margin-top:4px;font-size:14.5px}
+  .card{background:#fff;border:1px solid var(--gray-200);border-radius:16px;box-shadow:var(--shadow-xs);padding:24px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .hint{font-size:12.5px;color:var(--text-tertiary);display:inline-flex;align-items:center;gap:6px}
+  .hint svg{width:13px;height:13px;stroke:var(--gray-400);flex:none}
+
+  /* ---------- timeline ---------- */
+  .tl{position:relative;padding-left:30px}
+  .tl-track{position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--gray-200);border-radius:2px;overflow:hidden}
+  .tl-track i{display:block;width:100%;height:100%;background:linear-gradient(180deg,var(--brand-500),var(--brand-300));transform-origin:top;transform:scaleY(0);transition:transform 1.4s var(--move)}
+  .tl.in .tl-track i{transform:scaleY(1)}
+  .mo{position:relative;padding:0 0 10px 14px;margin-bottom:12px}
+  .mo:last-child{margin-bottom:0;padding-bottom:0}
+  .mo>button{display:block;width:100%;text-align:left;border-radius:12px;padding:8px 10px;margin:-8px -10px;transition:background .16s}
+  .mo>button:hover{background:var(--gray-50)}
+  .mo .pin{position:absolute;left:-30px;top:2px;width:20px;height:20px;border-radius:99px;border:2px solid #fff;box-shadow:0 0 0 2px var(--gray-200);display:grid;place-items:center;background:var(--gray-100);
+    opacity:0;transform:scale(.3);transition:opacity .35s ease,transform .45s var(--pop)}
+  .mo.in .pin{opacity:1;transform:scale(1)}
+  .mo .pin svg{width:11px;height:11px}
+  .mo.good .pin{background:var(--success-50);box-shadow:0 0 0 2px var(--success-100)}
+  .mo.warn .pin{background:var(--warning-50);box-shadow:0 0 0 2px var(--warning-100)}
+  .mo.brand .pin{background:var(--brand-50);box-shadow:0 0 0 2px var(--brand-100)}
+  .mo .t{font-size:12px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:8px}
+  .mo .t .cnt{font-weight:600;color:var(--brand-700);background:var(--brand-50);border-radius:99px;padding:1px 9px;text-transform:none;letter-spacing:0;font-size:11.5px}
+  .mo .t .caret{margin-left:auto;transition:transform .25s var(--move);stroke:var(--gray-400);width:14px;height:14px;flex:none}
+  .ptotal{margin-top:18px;padding-top:14px;border-top:1px dashed var(--gray-200);font-size:13.5px;color:var(--text-secondary)}
+  .ptotal b{color:var(--text-primary)}
+  .mo[aria-expanded="true"] .caret{transform:rotate(180deg)}
+  .mo h4{font-size:14.5px;font-weight:600;margin-top:3px}
+  .mo .det{overflow:hidden;max-height:0;transition:max-height .35s var(--move),opacity .25s ease;opacity:0}
+  .mo.open .det{max-height:120px;opacity:1}
+  .mo .det p{font-size:13.5px;color:var(--text-secondary);padding-top:6px}
+  .pill{display:inline-block;margin-left:8px;border-radius:99px;padding:1px 9px;font-size:11.5px;font-weight:600;vertical-align:1px}
+  .pill.g{background:var(--success-50);color:var(--success-700)}
+  .pill.o{background:var(--warning-50);color:var(--warning-700)}
+  .pill.b{background:var(--brand-50);color:var(--brand-700)}
+
+  /* ---------- progress chart ---------- */
+  .seriestabs{display:inline-flex;gap:2px;background:var(--gray-100);border-radius:10px;padding:3px}
+  .seriestabs button{font-size:13px;font-weight:600;color:var(--text-tertiary);padding:6px 14px;border-radius:8px;transition:color .18s,background .18s}
+  .seriestabs button[aria-selected="true"]{background:#fff;color:var(--brand-700);box-shadow:var(--shadow-xs)}
+  .chart-box{position:relative}
+  .tooltip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--gray-200);border-radius:10px;
+    box-shadow:var(--shadow-lg);padding:8px 12px;font-size:12.5px;color:var(--text-secondary);white-space:nowrap;
+    opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;z-index:5}
+  .tooltip b{color:var(--text-primary)}
+  .tooltip.show{opacity:1;transform:translateY(0)}
+  .pt{cursor:pointer;transition:r .18s var(--pop)}
+
+  /* ---------- skills ---------- */
+  .skill{border-top:1px solid var(--gray-100);padding:14px 0}
+  .skill:first-of-type{border-top:0;padding-top:4px}
+  .skill>button{display:block;width:100%;text-align:left;border-radius:10px;padding:6px 8px;margin:-6px -8px;transition:background .16s}
+  .skill>button:hover{background:var(--gray-50)}
+  .skill .row{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;margin-bottom:7px;gap:10px}
+  .skill .row b{font-weight:600}
+  .skill .row .r{color:var(--text-tertiary);display:flex;align-items:center;gap:8px;flex:none}
+  .skill .row .caret{width:14px;height:14px;stroke:var(--gray-400);transition:transform .25s var(--move)}
+  .skill[aria-expanded="true"] .caret{transform:rotate(180deg)}
+  .skill .bar{height:9px;border-radius:99px;background:var(--gray-100);overflow:hidden}
+  .skill .bar i{display:block;height:100%;border-radius:99px;transform-origin:left;transform:scaleX(0);transition:transform .9s var(--move) .1s}
+  .skill.in .bar i{transform:scaleX(1)}
+  .skill .det{overflow:hidden;max-height:0;opacity:0;transition:max-height .35s var(--move),opacity .25s}
+  .skill.open .det{max-height:220px;opacity:1}
+  .skill .det .inner{padding-top:12px;font-size:13.5px;color:var(--text-secondary)}
+  .skill .qline{display:flex;align-items:center;gap:9px;padding:5px 0}
+  .skill .qline .dot{width:18px;height:18px;border-radius:99px;flex:none;display:grid;place-items:center}
+  .skill .qline .dot svg{width:10px;height:10px}
+  .skill .next{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--gray-200);font-size:13.5px;color:var(--text-secondary)}
+  .skill .next svg{width:14px;height:14px;flex:none;margin-top:4px;stroke:var(--brand-600)}
+
+  /* ---------- try-again widget ---------- */
+  .try{background:linear-gradient(160deg,var(--brand-25),#fff 60%);border:1px solid var(--brand-100)}
+  .try .q{font-size:15px;font-weight:600;line-height:1.5}
+  .try .said{font-size:13.5px;color:var(--warning-700);background:var(--warning-50);border:1px solid var(--warning-100);border-radius:10px;padding:8px 12px;margin-top:10px;display:inline-block}
+  .try .step{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);margin:22px 0 10px}
+  .xrow{display:flex;flex-wrap:wrap;gap:8px}
+  .xbtn{border:1px solid var(--brand-200);background:#fff;color:var(--brand-700);font-weight:600;font-size:14px;
+    border-radius:10px;padding:9px 16px;min-width:60px;transition:transform .14s var(--pop),background .16s,border-color .16s,opacity .2s}
+  .xbtn:hover{background:var(--brand-50);border-color:var(--brand-300)}
+  .xbtn:active{transform:scale(.94)}
+  .xbtn.picked{background:var(--brand-600);border-color:var(--brand-600);color:#fff;cursor:default}
+  .xbtn.picked::before{content:"✓ ";font-weight:700}
+  table.tryt{border-collapse:collapse;margin-top:14px;font-size:14px;min-width:260px}
+  table.tryt th{font-size:13px;letter-spacing:.01em;color:var(--text-tertiary);font-weight:600;text-align:left;padding:6px 18px 6px 0;border-bottom:1px solid var(--gray-200)}
+  table.tryt td{padding:9px 18px 9px 0;border-bottom:1px solid var(--gray-100);color:var(--text-primary);font-weight:600}
+  table.tryt td .calc{display:block;font-weight:400;font-size:12.5px;color:var(--text-tertiary)}
+  table.tryt tr.new td{animation:rowIn .45s var(--move)}
+  @keyframes rowIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .arrowhint{display:none;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;color:var(--brand-700);font-weight:600}
+  .arrowhint.show{display:flex;animation:rowIn .4s var(--move)}
+  .arrowhint svg{width:16px;height:16px;stroke:var(--brand-600)}
+  .concl{display:none;margin-top:12px}
+  .concl.show{display:block;animation:rowIn .4s var(--move)}
+  .cbtn{border:1px solid var(--gray-300);background:#fff;border-radius:10px;padding:11px 16px;font-size:14px;font-weight:500;
+    text-align:left;transition:transform .14s var(--pop),border-color .16s,background .16s;margin-right:8px;margin-top:8px}
+  .cbtn:hover{border-color:var(--brand-400);background:var(--brand-25)}
+  .cbtn:active{transform:scale(.97)}
+  .cbtn.right{border-color:var(--success-500);background:var(--success-50);color:var(--success-700);font-weight:600}
+  .cbtn.wrong{border-color:var(--error-400);background:var(--error-50);color:var(--error-700)}
+  .verdict{display:none;margin-top:14px;border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.6}
+  .verdict.show{display:block;animation:rowIn .4s var(--move)}
+  .verdict.ok{background:var(--success-50);border:1px solid var(--success-100);color:var(--success-700)}
+  .verdict.no{background:var(--warning-50);border:1px solid var(--warning-100);color:#7A4A08}
+  .verdict b{color:inherit}
+  .reset{font-size:13px;color:var(--brand-700);font-weight:500;margin-top:14px;text-decoration:underline;text-underline-offset:3px}
+
+  /* ---------- tasks ---------- */
+  .todo h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);margin-bottom:4px}
+  .todo .src{font-size:13.5px;color:var(--text-secondary);margin-bottom:12px}
+  .ti{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border:1px solid var(--gray-200);border-radius:12px;background:#fff;
+    cursor:pointer;user-select:none;transition:border-color .16s,background .16s,transform .14s var(--pop);margin-top:8px;width:100%;text-align:left}
+  .ti:hover{border-color:var(--brand-300)}
+  .ti:active{transform:scale(.99)}
+  .ti .cb{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--gray-300);flex:none;display:grid;place-items:center;transition:background .18s,border-color .18s;margin-top:1px}
+  .ti .cb svg{width:12px;height:12px;opacity:0;transform:scale(.4);transition:opacity .18s,transform .3s var(--pop)}
+  .ti.done{background:var(--success-50);border-color:var(--success-100)}
+  .ti.done .cb{background:var(--success-500);border-color:var(--success-500)}
+  .ti.done .cb svg{opacity:1;transform:scale(1)}
+  .ti.done .tx{color:var(--text-tertiary);text-decoration:line-through}
+  .ti .tx{font-size:14px}
+  .ti .tx small{display:block;color:var(--text-tertiary);font-size:12.5px;text-decoration:none}
+  .cheer{margin-top:12px;font-size:13.5px;font-weight:600;color:var(--success-700);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+  .cheer.show{opacity:1;transform:none}
+  .confetti{position:fixed;width:9px;height:9px;border-radius:2px;pointer-events:none;z-index:99}
+
+  footer{margin:56px 0 40px;color:var(--text-tertiary);font-size:13px;text-align:center}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s var(--move)}
+  .reveal.in{opacity:1;transform:none}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+    .reveal{opacity:1;transform:none}
+    .skill .bar i{transform:scaleX(1)}
+    .tl-track i{transform:scaleY(1)}
+    .mo .pin{opacity:1;transform:scale(1)}
+    html{scroll-behavior:auto}
+  }
+  @media print{
+    body{background:#fff}
+    .topbar,.prog,.hint,.seriestabs,.ringtabs,.reset,.xrow,.concl,.subnav,.printbtn{display:none!important}
+    .hero{background:#fff;border-bottom:2px solid var(--gray-200)}
+    .hero .blob{display:none}
+    .card{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+    section{margin-top:22px;break-inside:avoid}
+    .reveal{opacity:1!important;transform:none!important}
+    .mo .det,.skill .det{max-height:none!important;opacity:1!important}
+    .skill .bar i{transform:scaleX(1)!important}
+    .tl-track i{transform:scaleY(1)!important}
+    .mo .pin{opacity:1!important;transform:none!important}
+  }
+  @media (max-width:1200px){ .subnav{display:none} }
+  @media (max-width:1000px){ .printbtn{display:none} }
+  @media (max-width:760px){ .live-badge{display:none} }
+  @media (max-width:800px){
+    .grid-2{grid-template-columns:1fr}
+    .hero h1{font-size:24px}
+    .hero .wrap{gap:28px}
+  }
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="logo"><svg viewBox="0 0 27 24" width="34" height="34" aria-hidden="true"><path d="M12.2382 0.250738L0.508486 5.10733C-0.169495 5.38842 -0.169495 6.3479 0.508486 6.629L12.2389 11.4848C13.0466 11.8192 13.9534 11.8192 14.7611 11.4848L26.4915 6.629C27.1695 6.34865 27.1695 5.38842 26.4915 5.10733L14.7611 0.250738C13.9534 -0.0835792 13.0466 -0.0835792 12.2389 0.250738H12.2382ZM13.4951 10.3575C12.5839 10.3575 11.8459 9.61836 11.8474 8.70761C11.8489 7.83059 12.5524 7.09974 13.4291 7.06526C14.3689 7.02853 15.1428 7.77962 15.1428 8.71061C15.1428 9.6416 14.4049 10.3575 13.4951 10.3575Z" fill="#ED1C24"/><path d="M25.0358 10.248V18.6142C25.0358 19.2806 24.6346 19.881 24.0188 20.1359L20.1287 21.746V18.2589L21.9452 17.5063V14.7358C22.3179 14.6391 22.5886 14.2883 22.5594 13.8798C22.5301 13.4578 22.1739 13.1219 21.7502 13.1159C21.2889 13.1092 20.9139 13.4802 20.9139 13.939C20.9139 14.3235 21.1772 14.6459 21.5334 14.7366V17.2319L20.1287 17.8136L19.717 17.9845V21.9176L16.2858 23.3381C15.7436 23.563 15.1466 23.1642 15.1466 22.5773V18.54L18.6452 17.0918V16.1106C19.0202 16.0161 19.2932 15.6646 19.264 15.2538C19.2347 14.843 18.8777 14.4952 18.454 14.4892C17.9935 14.4824 17.6185 14.8535 17.6185 15.3122C17.6185 15.6953 17.8795 16.0161 18.2328 16.1083V16.8159L15.1458 18.094V14.2103C15.1458 13.544 15.5471 12.9435 16.1628 12.6887L23.8966 9.48718C24.4388 9.2623 25.0358 9.66109 25.0358 10.248Z" fill="#0061AF"/><path d="M1.96269 10.248V18.6142C1.96269 19.2806 2.36393 19.881 2.97967 20.1358L6.86981 21.746V18.2589L5.05336 17.5063V14.7358C4.68062 14.6391 4.40988 14.2883 4.43913 13.8798C4.46837 13.4712 4.82462 13.1219 5.24835 13.1159C5.70959 13.1092 6.08458 13.4802 6.08458 13.939C6.08458 14.3235 5.82134 14.6459 5.4651 14.7366V17.2319L6.86981 17.8136L7.28155 17.9845V21.9176L10.7127 23.3381C11.2549 23.563 11.8519 23.1642 11.8519 22.5773V18.54L8.35327 17.0918V16.1106C7.97828 16.0161 7.70528 15.6645 7.73453 15.2538C7.76378 14.843 8.12077 14.4952 8.54451 14.4892C9.005 14.4824 9.37999 14.8535 9.37999 15.3122C9.37999 15.6953 9.119 16.0161 8.76576 16.1083V16.8159L11.8527 18.094V14.2103C11.8527 13.544 11.4514 12.9435 10.8357 12.6887L3.10116 9.48793C2.55893 9.26305 1.96194 9.66183 1.96194 10.2488L1.96269 10.248Z" fill="#0061AF"/></svg> Smart Class</div>
+    <nav class="subnav" aria-label="Page contents">
+      <a href="#dienbien">Today</a>
+      <a href="#tienbo">Progress</a>
+      <a href="#nambai">What you know</a>
+      <a href="#thulai">Try again</a>
+      <a href="#viec">To do</a>
+    </nav>
+    <div class="topright">
+      <span class="langsw"><a href="index.html">VI</a><a href="en.html" class="on" aria-current="page">EN</a></span>
+      <button class="printbtn" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M8 14h8v7H8z"/></svg>Print this page</button>
+      <span class="live-badge"><span class="dot"></span> Class 7A3 · 25 Aug</span>
+    </div>
+  </div>
+  <div class="prog" id="prog"></div>
+</header>
+
+<div class="hero">
+  <div class="blob" style="width:260px;height:260px;background:var(--brand-100);top:-80px;right:6%"></div>
+  <div class="blob" style="width:220px;height:220px;background:var(--warning-100);bottom:-90px;left:2%;animation-delay:-8s"></div>
+  <div class="wrap">
+    <div style="flex:1;min-width:280px">
+      <div class="eyebrow reveal">Maths 7 · Direct proportion · Tuesday 25 Aug</div>
+      <h1 class="reveal" style="transition-delay:.06s">You joined in <span class="hl num" data-count="7">0</span> times this lesson, more than any maths lesson so far this year</h1>
+      <div class="sub reveal" style="transition-delay:.1s">You raised your hand twice, answered four times and sent your teacher one question. You got quiz question 2 wrong, and there is a place to try it again at the bottom.</div>
+      <div class="meta reveal" style="transition-delay:.13s">Class 7A3 · period 3 · 9:05 – 9:50 · Ms Nguyễn Thu Hằng</div>
+      <div class="chips reveal" style="transition-delay:.16s">
+        <span class="chip"><span class="sw" style="background:var(--teal-600)"></span>Hands raised <b class="num">2</b></span>
+        <span class="chip"><span class="sw" style="background:var(--brand-600)"></span>Answers <b class="num">4</b></span>
+        <span class="chip"><span class="sw" style="background:var(--violet-600)"></span>Questions sent <b class="num">1</b></span>
+        <span class="chip"><span class="sw" style="background:var(--warning-600)"></span>Bonus points <b class="num">+85</b></span>
+      </div>
+    </div>
+    <div class="ringbox reveal" style="transition-delay:.2s">
+      <div class="ringtabs" role="tablist" aria-label="Show quiz or game on its own">
+        <button role="tab" aria-selected="true" data-ring="all">All</button>
+        <button role="tab" aria-selected="false" data-ring="quiz">Quiz</button>
+        <button role="tab" aria-selected="false" data-ring="game">Game</button>
+      </div>
+      <svg id="ring" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="You got 9 of 13 questions right, across the quiz and the game"></svg>
+      <div class="cap" id="ringCap" aria-live="polite">9 of 13 right, counting the quiz and the game</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <!-- MOMENTS -->
+  <section id="dienbien">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">What you did today</div>
+      <h2>All 7 times you joined in, in order</h2>
+      <p>Those 7 are: 2 hands raised, 4 answers, 1 question sent. The last two rows are bonus points and do not count towards the 7. Tap a row for more.</p>
+    </div>
+    <div class="card reveal">
+      <div class="tl" id="tl">
+        <div class="tl-track"><i></i></div>
+
+        <div class="mo good"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="t">Minute 06 · Start <span class="cnt">Hand raised 1</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>Put your hand up for the apples-by-weight example</h4>
+          <span class="det"><p>Your teacher called on you straight away. You were the first in the class to answer this lesson.</p></span></button></div>
+
+        <div class="mo good"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="t">Minute 07 · Start <span class="cnt">Answer 1</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>Right answer: 3 kilos of apples cost 3 times as much as 1 <span class="pill g">Right · +10 points</span></h4>
+          <span class="det"><p>Your teacher read your answer out to start the lesson.</p></span></button></div>
+
+        <div class="mo good"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="t">Minute 12 · Quick quiz <span class="cnt">Answer 2</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>Got question 1 right <span class="pill g">Right · +10 points</span></h4>
+          <span class="det"><p>Question 1 asked which table shows y directly proportional to x. 20 of the 23 in class got it right.</p></span></button></div>
+
+        <div class="mo warn"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-600)" stroke-width="3" stroke-linecap="round"><path d="M12 6v7M12 17.5v.5"/></svg></span>
+          <span class="t">Minute 14 · Quick quiz <span class="cnt">Answer 3</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>You picked “Yes” on question 2 <span class="pill o">Not right</span></h4>
+          <span class="det"><p>8 others in your class picked the same one. At the bottom of this page you can try question 2 again by filling in numbers.</p></span></button></div>
+
+        <div class="mo brand"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-600)" stroke-width="2.5" stroke-linecap="round"><path d="M12 21a9 9 0 1 0-9-9c0 1.6.4 3 1.2 4.3L3 21l4.9-1.2A9 9 0 0 0 12 21z" stroke-linejoin="round"/></svg></span>
+          <span class="t">Minute 24 · Teacher explaining <span class="cnt">Question sent</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>You asked “What if x is negative?” <span class="pill b">Answered</span></h4>
+          <span class="det"><p>Your teacher answered it at the end of the lesson, at minute 43.</p></span></button></div>
+
+        <div class="mo good"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="t">Minute 29 · Review game <span class="cnt">Hand raised 2</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>Put your hand up to read out the hard one <span class="pill g">+5 points</span></h4>
+          <span class="det"><p>9 people got that one wrong, and you offered to talk the class through it.</p></span></button></div>
+
+        <div class="mo good"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="2.5" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H13L13 2z"/></svg></span>
+          <span class="t">Minute 33 · Review game <span class="cnt">Answer 4</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>4 right in a row <span class="pill g">+40 points</span></h4>
+          <span class="det"><p>That is your longest run this year. The one before was 3, on 21 August.</p></span></button></div>
+
+        <div class="mo brand"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.4 6.7 19.1l1-5.8L3.5 9.2l5.9-.9L12 3z"/></svg></span>
+          <span class="t">Minute 40 · Review game <span class="cnt">Bonus</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>Points for your other 3 right answers in the game <span class="pill g">+10 points</span></h4>
+          <span class="det"><p>You got 7 of the 10 game questions right.</p></span></button></div>
+
+        <div class="mo brand"><button aria-expanded="false"><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.4 6.7 19.1l1-5.8L3.5 9.2l5.9-.9L12 3z"/></svg></span>
+          <span class="t">Minute 44 · End <span class="cnt">Bonus</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+          <h4>Points from your teacher for helping the person next to you <span class="pill b">+10 points</span></h4>
+          <span class="det"><p>They hit an error typing their answer in and you showed them what to do.</p></span></button></div>
+      </div>
+      <div class="ptotal">Add them up: 10 + 10 + 5 + 40 + 10 + 10 = <b>85 bonus points</b> this lesson.</div>
+    </div>
+  </section>
+
+  <!-- SELF PROGRESS -->
+  <section id="tienbo">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Against your own record</div>
+      <h2>How often you speak up each lesson</h2>
+      <p>These are your own last 5 maths lessons. No league table, and no comparing you with anyone else.</p>
+    </div>
+    <div class="card reveal chart-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+        <div class="seriestabs" role="tablist" aria-label="Choose what to show">
+          <button role="tab" aria-selected="true" data-series="talk">Times you spoke</button>
+          <button role="tab" aria-selected="false" data-series="correct">Questions right</button>
+        </div>
+        <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>Tap a dot to see that lesson</span>
+      </div>
+      <div id="lineWrap" style="margin-top:14px"></div>
+      <div id="lineDetail" style="margin-top:14px;font-size:14px;color:var(--text-secondary);min-height:44px" aria-live="polite"></div>
+      <div class="tooltip" id="lineTip"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="nambai">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">What is solid, what is not</div>
+      <h2>Your 13 questions today, grouped by type</h2>
+      <p>3 quiz questions plus 10 game questions makes 13. Tap a row to see which ones you got right and wrong.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--success-700);margin-bottom:10px">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--success-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>You have got this
+        </div>
+
+        <div class="skill" data-skill><button aria-expanded="false">
+          <div class="row"><b>Reading a table and spotting direct proportion</b><span class="r"><span class="num">4 of 4 right</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+          <div class="bar"><i style="width:100%;background:var(--success-500)"></i></div>
+          <div class="det"><div class="inner">
+            <div class="qline"><span class="dot" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Quiz question 1 · right</div>
+            <div class="qline"><span class="dot" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Game questions 1, 3, 6 · all 3 right</div>
+            <div class="next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-linejoin="round"/></svg>You did not miss one of these. Nothing more to practise here.</div>
+          </div></div>
+        </button></div>
+
+        <div class="skill" data-skill><button aria-expanded="false">
+          <div class="row"><b>Finding k, the number you multiply x by to get y</b><span class="r"><span class="num">3 of 4 right</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+          <div class="bar"><i style="width:75%;background:var(--success-500)"></i></div>
+          <div class="det"><div class="inner">
+            <div class="qline"><span class="dot" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Quiz question 3 · right</div>
+            <div class="qline"><span class="dot" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Game questions 2, 5 · both right</div>
+            <div class="qline"><span class="dot" style="background:var(--error-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--error-600)" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Game question 8 · wrong</div>
+            <div class="next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-linejoin="round"/></svg>You tapped question 8 very fast, before you had read the whole table. Next time read it through, then pick.</div>
+          </div></div>
+        </button></div>
+      </div>
+
+      <div class="card reveal" style="transition-delay:.07s">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--warning-700);margin-bottom:10px">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--warning-600)" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>Still needs work
+        </div>
+
+        <div class="skill" data-skill><button aria-expanded="false">
+          <div class="row"><b>Telling direct from inverse proportion</b><span class="r"><span class="num">1 of 3 right</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+          <div class="bar"><i style="width:33%;background:var(--warning-500)"></i></div>
+          <div class="det"><div class="inner">
+            <div class="qline"><span class="dot" style="background:var(--error-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--error-600)" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Quiz question 2 · wrong · you picked “Yes”</div>
+            <div class="qline"><span class="dot" style="background:var(--error-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--error-600)" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Game question 4 · wrong</div>
+            <div class="qline"><span class="dot" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Game question 7 · right</div>
+            <div class="next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-linejoin="round"/></svg>The try-again section just below deals with exactly this.</div>
+          </div></div>
+        </button></div>
+
+        <div class="skill" data-skill><button aria-expanded="false">
+          <div class="row"><b>Word problems</b><span class="r"><span class="num">1 of 2 right</span><svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+          <div class="bar"><i style="width:50%;background:var(--warning-500)"></i></div>
+          <div class="det"><div class="inner">
+            <div class="qline"><span class="dot" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Game question 9 · right · buying notebooks</div>
+            <div class="qline"><span class="dot" style="background:var(--error-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--error-600)" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Game question 10 · wrong · distance and time</div>
+            <div class="next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-linejoin="round"/></svg>Long word problems tend to tangle you up. Read it through, then underline the two things that change, like the number of notebooks and the money.</div>
+          </div></div>
+        </button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRY AGAIN WIDGET -->
+  <section id="thulai">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Try question 2 again</div>
+      <h2>Put a few numbers in and you will see it</h2>
+      <p>Nothing to memorise. Swap a number in, then watch whether y goes up or down.</p>
+    </div>
+    <div class="card try reveal">
+      <div class="q">Question 2 asked: given <b>y = 3/x</b>, is y directly proportional to x?</div>
+      <div class="said">In the lesson you picked “Yes”. Have another go.</div>
+
+      <div class="step">Step 1 · Tap 3 of the x values below, one at a time</div>
+      <div class="xrow" id="xrow">
+        <button class="xbtn" data-x="1">x = 1</button>
+        <button class="xbtn" data-x="2">x = 2</button>
+        <button class="xbtn" data-x="3">x = 3</button>
+        <button class="xbtn" data-x="6">x = 6</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="tryt" id="tryt">
+          <thead><tr><th>x</th><th>y = 3 divided by x</th><th>x times y</th></tr></thead>
+          <tbody id="trytb"><tr id="tryEmpty"><td colspan="3" style="color:var(--text-tertiary);font-weight:400">Tap an x above and the result shows up here.</td></tr></tbody>
+        </table>
+      </div>
+      <div class="arrowhint" id="arrowHint">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        Going down the table x gets bigger and y gets smaller. The last column stays at 3 the whole way.
+      </div>
+
+      <div class="concl" id="concl">
+        <div class="step" style="margin-top:20px">Step 2 · So, is y directly proportional to x</div>
+        <button class="cbtn" data-ans="yes">Yes, because x always gives you y</button>
+        <button class="cbtn" data-ans="no">No, because y drops as x rises</button>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <button class="reset" id="tryReset" hidden>Start over</button>
+    </div>
+  </section>
+
+  <!-- TASKS -->
+  <section id="viec">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Before Thursday’s lesson</div>
+      <h2>Your teacher set you two things</h2>
+    </div>
+    <div class="card reveal">
+      <div class="todo">
+        <h4>To do</h4>
+        <div class="src">Set after your teacher looked at your work today. Tap a row once you have done it.</div>
+        <button class="ti" aria-pressed="false">
+          <span class="cb"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="tx">Redo question 2 by filling in numbers, like the section above<small>About 5 minutes · rough working is fine</small></span>
+        </button>
+        <button class="ti" aria-pressed="false">
+          <span class="cb"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="tx">Do questions 3 and 4 on the practice sheet handed out at the end<small>About 15 minutes · read it, then underline the two things that change</small></span>
+        </button>
+        <div class="cheer" id="cheer">Both done. Your teacher will see it when you come in on Thursday.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Smart Class wrote this page during the Class 7A3 maths lesson on 25 August 2026.</div>
+    <div style="margin-top:6px">It sits in your learning record on the National Digital School LMS.</div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ease = function(p){ return 1 - Math.pow(1 - p, 3); };
+
+  /* ---------- reveal ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal,.skill,.tl").forEach(function(el){ io.observe(el); });
+
+  /* staggered timeline pins */
+  var tlio = new IntersectionObserver(function(es,o){
+    es.forEach(function(e){ if(e.isIntersecting){
+      document.querySelectorAll(".mo").forEach(function(m,i){
+        setTimeout(function(){ m.classList.add("in"); }, reduced ? 0 : 140 + i*110);
+      });
+      o.disconnect();
+    }});
+  },{threshold:.2});
+  if(document.getElementById("tl")) tlio.observe(document.getElementById("tl"));
+
+  /* ---------- section nav highlight ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".subnav a"));
+  var navio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting)
+        navLinks.forEach(function(a){ a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id); });
+    });
+  },{rootMargin:"-84px 0px -65% 0px"});
+  document.querySelectorAll("section[id]").forEach(function(s){ navio.observe(s); });
+
+  /* ---------- reading progress ---------- */
+  var prog = document.getElementById("prog");
+  addEventListener("scroll", function(){
+    var h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? Math.min(scrollY / h, 1) * 100 : 0) + "%";
+  }, {passive:true});
+
+  /* ---------- count-up ---------- */
+  function countUp(el, end, dur){
+    if(reduced){ el.textContent = end; return; }
+    var t0 = null;
+    requestAnimationFrame(function step(t){
+      if(!t0) t0 = t;
+      var p = Math.min((t - t0) / (dur || 900), 1);
+      el.textContent = Math.round(end * ease(p));
+      if(p < 1) requestAnimationFrame(step);
+    });
+  }
+  document.querySelectorAll("[data-count]").forEach(function(el){
+    countUp(el, parseInt(el.getAttribute("data-count"), 10), 900);
+  });
+
+  /* ---------- interactive ring ---------- */
+  var RING = {
+    all:  {n:9,  d:13, cap:"9 of 13 right, counting the quiz and the game"},
+    quiz: {n:2,  d:3,  cap:"Quiz mid-lesson: questions 1 and 3 right, question 2 wrong"},
+    game: {n:7,  d:10, cap:"End-of-lesson game: 7 of 10 right"}
+  };
+  var R = 70, C = 90, CIRC = 2 * Math.PI * R, ringEl = document.getElementById("ring"), ringCap = document.getElementById("ringCap");
+  ringEl.innerHTML =
+    '<circle cx="'+C+'" cy="'+C+'" r="'+R+'" fill="none" stroke="#F2F4F7" stroke-width="16"/>' +
+    '<circle id="ringArc" cx="'+C+'" cy="'+C+'" r="'+R+'" fill="none" stroke="#237BD3" stroke-width="16" stroke-linecap="round" ' +
+      'stroke-dasharray="0 '+CIRC+'" transform="rotate(-90 '+C+' '+C+')"/>' +
+    '<text x="'+C+'" y="'+(C-2)+'" text-anchor="middle" font-size="34" font-weight="800" fill="#101828" class="num">' +
+      '<tspan id="ringN">0</tspan><tspan id="ringD" font-size="17" font-weight="600" fill="#98A2B3">/13</tspan></text>' +
+    '<text x="'+C+'" y="'+(C+22)+'" text-anchor="middle" font-size="12.5" fill="#667085">right</text>';
+  var arc = document.getElementById("ringArc"), ringN = document.getElementById("ringN"), ringD = document.getElementById("ringD");
+
+  function drawRing(key, animate){
+    var r = RING[key], frac = r.n / r.d;
+    arc.style.transition = (animate && !reduced) ? "stroke-dasharray .9s cubic-bezier(.2,.7,.2,1)" : "none";
+    arc.setAttribute("stroke-dasharray", (frac * CIRC) + " " + (CIRC - frac * CIRC));
+    ringD.textContent = "/" + r.d;
+    ringCap.textContent = r.cap;
+    ringEl.setAttribute("aria-label", "You got " + r.n + " of " + r.d + " right");
+    if(animate) countUp(ringN, r.n, 800); else ringN.textContent = r.n;
+  }
+  setTimeout(function(){ drawRing("all", true); }, 320);
+  document.querySelectorAll("[data-ring]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("[data-ring]").forEach(function(x){ x.setAttribute("aria-selected", "false"); });
+      b.setAttribute("aria-selected", "true");
+      drawRing(b.getAttribute("data-ring"), true);
+    });
+  });
+
+  /* ---------- expandable timeline moments ---------- */
+  document.querySelectorAll(".mo > button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      btn.parentElement.classList.toggle("open", !open);
+    });
+  });
+
+  /* ---------- expandable skills ---------- */
+  document.querySelectorAll("[data-skill] > button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      btn.parentElement.classList.toggle("open", !open);
+    });
+  });
+
+  /* ---------- progress line chart, two series ---------- */
+  var SERIES = {
+    talk: {
+      vals: [3, 4, 4, 6, 7], max: 8, unit: "times",
+      note: [
+        "11 Aug · spoke 3 times: 1 hand up, 2 answers.",
+        "14 Aug · spoke 4 times. That was the first time you sent your teacher a question.",
+        "18 Aug · spoke 4 times, same as the lesson before.",
+        "21 Aug · spoke 6 times, 4 of them during the game.",
+        "Today · spoke 7 times, the most of the five."
+      ]
+    },
+    correct: {
+      vals: [5, 6, 7, 8, 9], max: 13, unit: "right",
+      note: [
+        "11 Aug · 5 right. You slipped on 2 of the table questions that day.",
+        "14 Aug · 6 right.",
+        "18 Aug · 7 right. From this lesson on you stopped missing the table questions.",
+        "21 Aug · 8 right.",
+        "Today · 9 right, the most of the five."
+      ]
+    }
+  };
+  var LABS = ["11 Aug", "14 Aug", "18 Aug", "21 Aug", "Today"];
+  var LW = 880, LH = 240, LP = {t:30, r:26, b:34, l:26};
+  var liw = LW - LP.l - LP.r, lih = LH - LP.t - LP.b;
+  var curSeries = "talk", curPt = -1;
+  var lineWrap = document.getElementById("lineWrap"), lineDetail = document.getElementById("lineDetail"), lineTip = document.getElementById("lineTip");
+
+  function LX(i){ return LP.l + liw * i / (LABS.length - 1); }
+  function LY(v, max){ return LP.t + lih * (1 - v / max); }
+
+  function drawLine(key, animate){
+    var S = SERIES[key], d = "", i;
+    for(i = 0; i < S.vals.length; i++) d += (i ? " L" : "M") + LX(i) + " " + LY(S.vals[i], S.max);
+    var s = '<svg id="lineSvg" viewBox="0 0 '+LW+' '+LH+'" style="width:100%;height:auto" role="img" aria-label="'+
+      S.unit+' over 5 lessons: '+S.vals.join(", ")+'">';
+    for(i = 0; i <= 4; i++){
+      var gv = S.max * i / 4;
+      s += '<line x1="'+LP.l+'" x2="'+(LW-LP.r)+'" y1="'+LY(gv,S.max)+'" y2="'+LY(gv,S.max)+'" stroke="#EAECF0"/>';
+    }
+    s += '<path d="'+d+' L'+LX(4)+' '+(LP.t+lih)+' L'+LX(0)+' '+(LP.t+lih)+' Z" fill="#DDEBFA" opacity=".45"/>';
+    s += '<path id="pLine" d="'+d+'" fill="none" stroke="#237BD3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+    S.vals.forEach(function(v, j){
+      var last = j === S.vals.length - 1;
+      s += '<circle class="pt" data-i="'+j+'" cx="'+LX(j)+'" cy="'+LY(v,S.max)+'" r="'+(last?7:5)+'" fill="'+(last?"#237BD3":"#fff")+'" stroke="#237BD3" stroke-width="2.5"/>' +
+        '<circle class="hit" data-i="'+j+'" cx="'+LX(j)+'" cy="'+LY(v,S.max)+'" r="22" fill="transparent" style="cursor:pointer"/>' +
+        '<text x="'+LX(j)+'" y="'+(LY(v,S.max)-15)+'" text-anchor="middle" font-size="13.5" font-weight="700" fill="'+(last?"#0060A6":"#475467")+'" class="num">'+v+'</text>' +
+        '<text x="'+LX(j)+'" y="'+(LH-8)+'" text-anchor="middle" font-size="12" fill="'+(last?"#0060A6":"#98A2B3")+'" font-weight="'+(last?"700":"400")+'">'+LABS[j]+'</text>';
+    });
+    s += '</svg>';
+    lineWrap.innerHTML = s;
+
+    var pl = document.getElementById("pLine"), len = pl.getTotalLength();
+    if(animate && !reduced){
+      pl.style.strokeDasharray = len; pl.style.strokeDashoffset = len;
+      requestAnimationFrame(function(){
+        pl.style.transition = "stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1)";
+        pl.style.strokeDashoffset = 0;
+      });
+      lineWrap.querySelectorAll(".pt").forEach(function(c, j){
+        var r0 = c.getAttribute("r");
+        c.setAttribute("r", 0);
+        setTimeout(function(){ c.setAttribute("r", r0); }, 260 + j * 170);
+      });
+    }
+    lineWrap.querySelectorAll(".hit").forEach(function(h){
+      var j = +h.getAttribute("data-i");
+      h.addEventListener("click", function(){ pickPoint(j); });
+      h.addEventListener("mouseenter", function(ev){
+        var host = h.closest(".chart-box").getBoundingClientRect(), b = h.getBoundingClientRect();
+        lineTip.innerHTML = "<b>" + LABS[j] + "</b> · " + SERIES[curSeries].vals[j] + " " + SERIES[curSeries].unit;
+        lineTip.style.left = Math.min(b.left - host.left + 12, host.width - 190) + "px";
+        lineTip.style.top = (b.top - host.top - 34) + "px";
+        lineTip.classList.add("show");
+      });
+      h.addEventListener("mouseleave", function(){ lineTip.classList.remove("show"); });
+    });
+    if(curPt >= 0) pickPoint(curPt, true);
+  }
+
+  function pickPoint(j, silent){
+    curPt = j;
+    lineWrap.querySelectorAll(".pt").forEach(function(c){
+      var on = +c.getAttribute("data-i") === j;
+      c.setAttribute("fill", on ? "#237BD3" : (+c.getAttribute("data-i") === 4 ? "#237BD3" : "#fff"));
+      c.setAttribute("r", on ? 8 : (+c.getAttribute("data-i") === 4 ? 7 : 5));
+    });
+    lineDetail.innerHTML = '<span style="display:inline-flex;gap:8px;align-items:flex-start">' +
+      '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#237BD3" stroke-width="2" stroke-linecap="round" style="margin-top:4px;flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>' +
+      SERIES[curSeries].note[j] + '</span>';
+    if(!silent && lineDetail.animate && !reduced)
+      lineDetail.animate([{opacity:0, transform:"translateY(5px)"}, {opacity:1, transform:"none"}], {duration:260, easing:"ease-out"});
+  }
+
+  var lio = new IntersectionObserver(function(es, o){
+    es.forEach(function(e){ if(e.isIntersecting){ drawLine(curSeries, true); o.disconnect(); } });
+  },{threshold:.3});
+  lio.observe(lineWrap);
+  drawLine(curSeries, false);
+
+  document.querySelectorAll("[data-series]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("[data-series]").forEach(function(x){ x.setAttribute("aria-selected", "false"); });
+      b.setAttribute("aria-selected", "true");
+      curSeries = b.getAttribute("data-series");
+      drawLine(curSeries, true);
+    });
+  });
+
+  /* ---------- try-again widget ---------- */
+  var picked = [], tb = document.getElementById("trytb"), emptyRow = document.getElementById("tryEmpty");
+  var arrowHint = document.getElementById("arrowHint"), concl = document.getElementById("concl");
+  var verdict = document.getElementById("verdict"), tryReset = document.getElementById("tryReset");
+
+  function fmt(n){ return Number.isInteger(n) ? String(n) : n.toFixed(1); }
+
+  document.querySelectorAll(".xbtn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var x = +b.getAttribute("data-x");
+      if(picked.indexOf(x) > -1) return;
+      picked.push(x); picked.sort(function(a, c){ return a - c; });
+      b.classList.add("picked");
+      if(emptyRow) { emptyRow.remove(); emptyRow = null; }
+
+      tb.innerHTML = "";
+      picked.forEach(function(v){
+        var tr = document.createElement("tr");
+        if(v === x) tr.className = "new";
+        tr.innerHTML = '<td class="num">' + v + '</td><td class="num">' + fmt(3 / v) +
+          '<span class="calc">3 divided by ' + v + ' is ' + fmt(3 / v) + '</span></td>' +
+          '<td class="num" style="color:var(--brand-700)">3<span class="calc">' + v + ' times ' + fmt(3 / v) + ' is 3</span></td>';
+        tb.appendChild(tr);
+      });
+
+      if(picked.length >= 3){ arrowHint.classList.add("show"); concl.classList.add("show"); }
+    });
+  });
+
+  document.querySelectorAll(".cbtn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var right = b.getAttribute("data-ans") === "no";
+      document.querySelectorAll(".cbtn").forEach(function(x){ x.disabled = true; });
+      b.classList.add(right ? "right" : "wrong");
+      if(right) document.querySelector('.cbtn[data-ans="no"]').classList.add("right");
+      verdict.className = "verdict show " + (right ? "ok" : "no");
+      verdict.innerHTML = right
+        ? "<b>That is right.</b> x climbs from 1 to 6 while y falls from 3 to 0.5, so they move opposite ways. Look at the last column: x times y always comes out 3. When multiplying gives you the same number every time, that is <b>inverse</b> proportion. Direct proportion is when <b>dividing</b> gives the same number, like y = 3x, where y divided by x is always 3."
+        : "<b>Not quite.</b> Look at the table again: at x = 1, y is 3; at x = 6, y is down to 0.5. x goes up while y comes down. Check the last column, x times y is always 3 — multiplying to the same number every time means <b>inverse</b> proportion. Where it trips you up is thinking “x gives you y, so it must be direct”. x does give you y, but for direct proportion y divided by x has to stay the same.";
+      tryReset.hidden = false;
+      if(right && !reduced) burst(b.getBoundingClientRect());
+    });
+  });
+
+  tryReset.addEventListener("click", function(){
+    picked = [];
+    tb.innerHTML = '<tr><td colspan="3" style="color:var(--text-tertiary);font-weight:400">Tap an x above and the result shows up here.</td></tr>';
+    document.querySelectorAll(".xbtn").forEach(function(x){ x.classList.remove("picked"); });
+    document.querySelectorAll(".cbtn").forEach(function(x){ x.disabled = false; x.className = "cbtn"; });
+    arrowHint.classList.remove("show"); concl.classList.remove("show");
+    verdict.className = "verdict"; tryReset.hidden = true;
+    document.querySelector(".xbtn").focus();
+  });
+
+  /* ---------- confetti ---------- */
+  function burst(rect){
+    if(reduced) return;
+    var cols = ["#237BD3", "#FFA23A", "#12B76A", "#7839EE", "#4A97E0"];
+    var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+    for(var i = 0; i < 20; i++){
+      var c = document.createElement("div");
+      c.className = "confetti";
+      c.style.background = cols[i % cols.length];
+      c.style.left = cx + "px"; c.style.top = cy + "px";
+      document.body.appendChild(c);
+      var ang = Math.PI * 2 * i / 20, v = 62 + (i % 5) * 24;
+      c.animate(
+        [{transform:"translate(0,0) rotate(0)", opacity:1},
+         {transform:"translate(" + Math.cos(ang) * v + "px," + (Math.sin(ang) * v + 95) + "px) rotate(" + (180 + i * 40) + "deg)", opacity:0}],
+        {duration: 900 + i * 20, easing:"cubic-bezier(.2,.7,.3,1)"}
+      ).onfinish = function(){ this.effect.target.remove(); };
+    }
+  }
+
+  /* ---------- task checklist ---------- */
+  var items = document.querySelectorAll(".ti"), cheer = document.getElementById("cheer");
+  items.forEach(function(it){
+    it.addEventListener("click", function(){
+      var done = it.classList.toggle("done");
+      it.setAttribute("aria-pressed", done ? "true" : "false");
+      if(done) burst(it.getBoundingClientRect());
+      var all = Array.prototype.every.call(items, function(x){ return x.classList.contains("done"); });
+      cheer.classList.toggle("show", all);
+    });
+  });
+})();
+</script>

@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Báo cáo tiết học của em</title>
+  <style>
+    :root {
+      --sky: #0EA5E9;
+      --sky-600: #0284C7;
+      --sky-700: #0369A1;
+      --sky-50: #F0F9FF;
+      --sky-100: #E0F2FE;
+      --teal: #14B8A6;
+      --teal-600: #0D9488;
+      --teal-50: #F0FDFA;
+      --coral: #F97316;
+      --coral-50: #FFF7ED;
+      --amber: #F59E0B;
+      --amber-50: #FFFBEB;
+      --rose: #F43F5E;
+      --rose-50: #FFF1F2;
+      --violet: #8B5CF6;
+      --violet-50: #F5F3FF;
+      --ink: #0F172A;
+      --body: #334155;
+      --muted: #64748B;
+      --faint: #94A3B8;
+      --line: #E2E8F0;
+      --line-soft: #F1F5F9;
+      --bg: #F8FAFC;
+      --card: #fff;
+      --r: 12px;
+      --r-lg: 16px;
+      --r-xl: 22px;
+      --sh-sm: 0 1px 2px rgba(15, 23, 42, .06);
+      --sh: 0 1px 3px rgba(15, 23, 42, .08), 0 8px 24px -12px rgba(15, 23, 42, .12);
+      --sh-lg: 0 12px 40px -16px rgba(2, 132, 199, .30);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(--ink);
+      margin: 0;
+      font-weight: 650;
+      letter-spacing: -.015em;
+      line-height: 1.28
+    }
+
+    p {
+      margin: 0
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    svg.ic {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    button:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--sky);
+      outline-offset: 2px;
+      border-radius: 8px
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      padding: 34px 0 96px;
+      background: linear-gradient(135deg, #0369A1 0%, #0284C7 45%, #0D9488 100%)
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(660px 320px at 86% -14%, rgba(45, 212, 191, .42), transparent 62%),
+        radial-gradient(520px 300px at 4% 118%, rgba(14, 165, 233, .5), transparent 60%)
+    }
+
+    .hero .wrap {
+      position: relative;
+      z-index: 2
+    }
+
+    .crumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, .74);
+      flex-wrap: wrap
+    }
+
+    .dot-sep {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .45)
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .24);
+      font-size: 12.5px;
+      font-weight: 600
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(27px, 3.5vw, 40px);
+      margin: 18px 0 12px;
+      font-weight: 700
+    }
+
+    .hero .sub {
+      color: rgba(255, 255, 255, .9);
+      font-size: 16.5px;
+      max-width: 640px
+    }
+
+    .hero-row {
+      display: flex;
+      gap: 9px;
+      margin-top: 22px;
+      flex-wrap: wrap
+    }
+
+    .chip {
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 550;
+      background: rgba(255, 255, 255, .14);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: #fff
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: -64px;
+      position: relative;
+      z-index: 5
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 20px;
+      box-shadow: var(--sh);
+      transition: transform .28s cubic-bezier(.2, .8, .2, 1), box-shadow .28s
+    }
+
+    .stat:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-lg)
+    }
+
+    .stat .ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 13px
+    }
+
+    .stat .val {
+      font-size: 33px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.03em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums
+    }
+
+    .stat .val small {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--faint)
+    }
+
+    .stat .lbl {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 7px
+    }
+
+    .stat .delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-top: 11px;
+      padding: 3px 9px;
+      border-radius: 7px
+    }
+
+    .up {
+      background: var(--teal-50);
+      color: #0F766E
+    }
+
+    .down {
+      background: var(--rose-50);
+      color: #BE123C
+    }
+
+    .flat {
+      background: var(--line-soft);
+      color: var(--muted)
+    }
+
+    section {
+      padding: 52px 0 0
+    }
+
+    .sec-head {
+      margin-bottom: 20px;
+      max-width: 740px
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--sky-600);
+      margin-bottom: 8px
+    }
+
+    .sec-head h2 {
+      font-size: 25px;
+      margin-bottom: 8px
+    }
+
+    .sec-head p {
+      color: var(--muted);
+      font-size: 15px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-xl);
+      padding: 26px;
+      box-shadow: var(--sh-sm)
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 20px
+    }
+
+    .grid-eq {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s cubic-bezier(.2, .8, .2, 1), transform .7s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .rv.on {
+      opacity: 1;
+      transform: none
+    }
+
+    /* MASTERY RINGS */
+    .rings {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px
+    }
+
+    .ring {
+      text-align: center;
+      padding: 20px 12px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: .26s;
+      cursor: default
+    }
+
+    .ring:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--sh);
+      border-color: #BAE6FD
+    }
+
+    .ring svg {
+      width: 104px;
+      height: 104px;
+      transform: rotate(-90deg)
+    }
+
+    .ring .pc {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: -66px;
+      position: relative;
+      font-variant-numeric: tabular-nums
+    }
+
+    .ring .nm {
+      font-size: 13.8px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-top: 44px
+    }
+
+    .ring .st {
+      font-size: 12.5px;
+      margin-top: 5px;
+      font-weight: 600
+    }
+
+    /* GROWTH */
+    #growth {
+      width: 100%;
+      height: 290px;
+      display: block;
+      overflow: visible
+    }
+
+    .gtip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -120%);
+      background: var(--ink);
+      color: #fff;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      white-space: nowrap;
+      transition: opacity .16s;
+      box-shadow: 0 8px 24px -8px rgba(15, 23, 42, .5);
+      z-index: 9
+    }
+
+    .gtip b {
+      color: #7DD3FC
+    }
+
+    .gwrap {
+      position: relative
+    }
+
+    /* PERSONAL TIMELINE */
+    .moments {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 6px
+    }
+
+    .mo {
+      display: flex;
+      gap: 16px;
+      padding: 0 0 20px;
+      position: relative
+    }
+
+    .mo::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 30px;
+      bottom: -4px;
+      width: 2px;
+      background: var(--line)
+    }
+
+    .mo:last-child::before {
+      display: none
+    }
+
+    .mo-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      z-index: 2;
+      background: #fff;
+      border: 2px solid var(--line)
+    }
+
+    .mo-t {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--faint);
+      letter-spacing: .03em
+    }
+
+    .mo-h {
+      font-size: 14.8px;
+      font-weight: 650;
+      color: var(--ink);
+      margin-top: 2px
+    }
+
+    .mo-p {
+      font-size: 13.8px;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    /* ANSWER STYLE */
+    .astyle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .as {
+      padding: 17px;
+      border-radius: var(--r);
+      border: 1px solid var(--line);
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: .26s
+    }
+
+    .as:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--sh)
+    }
+
+    .as .n {
+      font-size: 27px;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums
+    }
+
+    .as .k {
+      font-size: 13.8px;
+      font-weight: 650;
+      color: var(--ink);
+      margin-top: 7px
+    }
+
+    .as .d {
+      font-size: 12.8px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.5
+    }
+
+    /* REVIEW */
+    .rq {
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-bottom: 11px;
+      background: #fff;
+      transition: .22s
+    }
+
+    .rq:hover {
+      border-color: #FDBA74
+    }
+
+    .rq-h {
+      padding: 16px 18px;
+      display: flex;
+      gap: 13px;
+      align-items: center;
+      cursor: pointer;
+      font-family: inherit;
+      border: 0;
+      background: none;
+      width: 100%;
+      text-align: left
+    }
+
+    .rq-n {
+      width: 27px;
+      height: 27px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 12.5px;
+      font-weight: 700;
+      background: var(--rose-50);
+      color: #BE123C;
+      flex: 0 0 auto
+    }
+
+    .rq-q {
+      flex: 1;
+      font-size: 14.8px;
+      color: var(--ink);
+      font-weight: 550
+    }
+
+    .rq-c {
+      transition: transform .3s;
+      color: var(--faint)
+    }
+
+    .rq.open .rq-c {
+      transform: rotate(180deg)
+    }
+
+    .rq-b {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .42s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .rq.open .rq-b {
+      max-height: 340px
+    }
+
+    .rq-in {
+      padding: 0 18px 18px
+    }
+
+    .ansrow {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 9px;
+      align-items: flex-start;
+      font-size: 13.8px
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      flex: 0 0 auto;
+      margin-top: 2px
+    }
+
+    .why {
+      margin-top: 12px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      background: var(--sky-50);
+      border: 1px solid #BAE6FD;
+      font-size: 13.8px;
+      color: #0C4A6E
+    }
+
+    /* CLASS BAND */
+    .band {
+      position: relative;
+      height: 74px;
+      margin: 26px 0 8px
+    }
+
+    .band-track {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 26px;
+      height: 22px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #FEE2E2 0%, #FEF3C7 32%, #D1FAE5 66%, #CCFBF1 100%)
+    }
+
+    .band-me {
+      position: absolute;
+      top: 8px;
+      width: 4px;
+      height: 58px;
+      border-radius: 99px;
+      background: var(--ink);
+      left: 0;
+      transition: left 1.3s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .band-me span {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 7px;
+      white-space: nowrap
+    }
+
+    .band-lbl {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--faint);
+      margin-top: 2px
+    }
+
+    /* NEXT */
+    .todo {
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .td {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: var(--r);
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: .24s
+    }
+
+    .td:hover {
+      transform: translateX(4px);
+      border-color: #BAE6FD
+    }
+
+    .td-n {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--sky);
+      flex: 0 0 auto
+    }
+
+    .td-h {
+      font-size: 14.8px;
+      font-weight: 650;
+      color: var(--ink)
+    }
+
+    .td-p {
+      font-size: 13.8px;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    .td-m {
+      font-size: 12px;
+      font-weight: 650;
+      color: var(--sky-700);
+      background: var(--sky-50);
+      padding: 3px 9px;
+      border-radius: 7px;
+      display: inline-block;
+      margin-top: 8px
+    }
+
+    /* STREAK */
+    .streak {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap
+    }
+
+    .sd {
+      width: 44px;
+      height: 52px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--faint);
+      transition: .3s
+    }
+
+    .sd.hit {
+      background: linear-gradient(160deg, var(--teal), var(--sky));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 6px 16px -8px rgba(13, 148, 136, .7)
+    }
+
+    footer {
+      margin-top: 64px;
+      padding: 30px 0 46px;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font-size: 13px
+    }
+
+    .foot-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--body);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: .2s
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--sky);
+      color: var(--sky-700)
+    }
+
+    @media(max-width:980px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .grid-2,
+      .grid-eq {
+        grid-template-columns: 1fr
+      }
+
+      .rings {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:560px) {
+
+      .stats,
+      .astyle {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+
+      .rv {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="crumb">
+        <span class="pill">Tiết vừa xong · 09:25</span>
+        <span class="dot-sep"></span><span>Vật lí 8</span>
+        <span class="dot-sep"></span><span>Lớp 8A2</span>
+        <span class="dot-sep"></span><span>Thứ Ba 25/08</span>
+      </div>
+      <h1>Hôm nay Minh chắc bài hơn hôm thứ Năm</h1>
+      <p class="sub">Em trả lời đúng 8 trên 10 câu và bấm nhanh hơn tiết trước 4 giây. Chỗ còn vướng chỉ nằm ở phần bình
+        thông nhau. Cuối trang có ba việc nhỏ để gỡ nốt.</p>
+      <div class="hero-row">
+        <span class="chip">Bài: Áp suất chất lỏng</span>
+        <span class="chip">GV Nguyễn Thu Hà</span>
+        <span class="chip">45 phút</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rv">
+        <div class="ico" style="background:var(--teal-50);color:var(--teal-600)">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </div>
+        <div class="val"><span class="cu" data-to="8">0</span><small>/10 câu</small></div>
+        <div class="lbl">Số câu em làm đúng</div>
+        <div class="delta up">nhiều hơn tiết trước 2 câu</div>
+      </div>
+      <div class="stat rv" style="transition-delay:.08s">
+        <div class="ico" style="background:var(--sky-50);color:var(--sky-600)">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M12 6v6l4 2" />
+            <circle cx="12" cy="12" r="9" />
+          </svg>
+        </div>
+        <div class="val"><span class="cu" data-to="11">0</span><small>giây</small></div>
+        <div class="lbl">Em nghĩ bao lâu trước khi chọn</div>
+        <div class="delta up">nhanh hơn 4 giây</div>
+      </div>
+      <div class="stat rv" style="transition-delay:.16s">
+        <div class="ico" style="background:var(--coral-50);color:#EA580C">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M12 20V10M18 20V4M6 20v-4" />
+          </svg>
+        </div>
+        <div class="val"><span class="cu" data-to="3">0</span><small>lần</small></div>
+        <div class="lbl">Số lần em phát biểu</div>
+        <div class="delta up">cao nhất từ đầu tháng</div>
+      </div>
+      <div class="stat rv" style="transition-delay:.24s">
+        <div class="ico" style="background:var(--violet-50);color:#7C3AED">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </div>
+        <div class="val"><span class="cu" data-to="87">0</span><small>%</small></div>
+        <div class="lbl">Thời gian em bám theo bài</div>
+        <div class="delta flat">có rời ra khoảng phút 21</div>
+      </div>
+    </div>
+
+    <!-- MASTERY -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">Bốn điều bài học hôm nay muốn em nắm</div>
+        <h2>Em đã chắc phần nào rồi</h2>
+        <p>Đây không phải điểm số. Mỗi vòng tròn là một ý trong bài, cho biết em đã dùng được ý đó chưa.</p>
+      </div>
+      <div class="rings rv" id="rings"></div>
+      <div class="card rv"
+        style="margin-top:18px;background:var(--sky-50);border-color:#BAE6FD;color:#0C4A6E;font-size:14.6px;padding:18px 20px">
+        Ba ý đầu em đã dùng được trong bài tập. Riêng bình thông nhau, cả hai câu em chọn đều nghiêng về hướng “nhánh to
+        thì nước cao hơn”. Đây là chỗ nhiều bạn cũng nhầm, không phải mình em.
+      </div>
+    </section>
+
+    <!-- GROWTH -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">So với chính em</div>
+        <h2>Sáu tiết Vật lí gần nhất</h2>
+        <p>Đường này không so em với bạn nào cả. Nó chỉ cho thấy em của hôm nay so với em của mấy tuần trước. Rê chuột
+          vào từng điểm để xem tiết đó.</p>
+      </div>
+      <div class="card rv">
+        <div class="gwrap">
+          <svg id="growth" viewBox="0 0 900 280"></svg>
+          <div class="gtip" id="gtip"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER STYLE + BAND -->
+    <section>
+      <div class="grid-eq">
+        <div>
+          <div class="sec-head rv">
+            <div class="eyebrow">Cách em làm bài</div>
+            <h2>Nhanh chưa chắc đã là chắc</h2>
+            <p>Ghép tốc độ bấm với kết quả sẽ thấy rõ hơn: chỗ nào em thật sự chắc, chỗ nào em đang đoán.</p>
+          </div>
+          <div class="astyle rv" id="astyle"></div>
+        </div>
+        <div>
+          <div class="sec-head rv">
+            <div class="eyebrow">Vị trí trong lớp</div>
+            <h2>Em đang ở khoảng nào</h2>
+            <p>Lớp không xếp hạng. Vạch đen là em, dải màu là khoảng của cả lớp hôm nay.</p>
+          </div>
+          <div class="card rv" style="transition-delay:.1s">
+            <div class="band">
+              <div class="band-track"></div>
+              <div class="band-me" id="bandMe"><span>Em · 80%</span></div>
+            </div>
+            <div class="band-lbl"><span>Còn phải ôn lại</span><span>Nắm khá chắc</span></div>
+            <p style="font-size:14.2px;color:var(--muted);margin-top:18px">
+              Hôm nay em nằm trong nhóm cao của lớp. Trung bình lớp là 74%. Điều đáng nói hơn con số này là em đã đi lên
+              bốn tiết liên tiếp — thứ đó khó hơn nhiều so với một tiết làm tốt.
+            </p>
+            <div class="streak" id="streak"></div>
+            <p style="font-size:12.8px;color:var(--faint);margin-top:11px">Sáu tiết Vật lí gần nhất · ô sáng là tiết em
+              làm đúng trên 70%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section>
+      <div class="grid-2">
+        <div>
+          <div class="sec-head rv">
+            <div class="eyebrow">45 phút của em</div>
+            <h2>Tiết học hôm nay đi qua những gì</h2>
+            <p>Chỉ ghi lại những lúc đáng nhớ, không phải mọi thao tác.</p>
+          </div>
+          <div class="card rv">
+            <div class="moments" id="moments"></div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-head rv">
+            <div class="eyebrow">Hai câu em làm sai</div>
+            <h2>Xem lại cho hiểu, không phải để trừ điểm</h2>
+            <p>Bấm vào từng câu để mở phần giải thích.</p>
+          </div>
+          <div class="rv" id="review" style="transition-delay:.1s"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">Trước tiết sau</div>
+        <h2>Ba việc, làm hết chừng 15 phút</h2>
+      </div>
+      <div class="todo rv" id="todo"></div>
+    </section>
+
+    <footer>
+      <div class="foot-row">
+        <div>Trường học số · Smart Class — báo cáo dành cho học sinh<br />Bản demo, số liệu mô phỏng.</div>
+        <div style="display:flex;gap:9px">
+          <button class="btn-ghost">Gửi cho bố mẹ xem</button>
+          <button class="btn-ghost">Lưu vào hồ sơ học tập</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const NS = "http://www.w3.org/2000/svg";
+    const el = (t, a = {}) => { const n = document.createElementNS(NS, t); for (const k in a) n.setAttribute(k, a[k]); return n };
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const io = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target) } }), { threshold: .12 });
+    $$('.rv').forEach(n => io.observe(n));
+
+    const cio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; cio.unobserve(e.target);
+      const n = e.target, to = +n.dataset.to;
+      if (RM) { n.textContent = to; return }
+      const t0 = performance.now(), d = 1100;
+      const st = t => { const p = Math.min(1, (t - t0) / d); n.textContent = Math.round(to * ease(p)); if (p < 1) requestAnimationFrame(st) };
+      requestAnimationFrame(st);
+    }), { threshold: .4 });
+    $$('.cu').forEach(n => cio.observe(n));
+
+    /* ---------- MASTERY RINGS ---------- */
+    const GOALS = [
+      { n: "Áp suất chất lỏng ép theo mọi hướng", v: 92, s: "Đã chắc", c: "#14B8A6" },
+      { n: "Càng sâu áp suất càng lớn", v: 84, s: "Đã chắc", c: "#0EA5E9" },
+      { n: "Dùng được công thức p = d·h", v: 71, s: "Gần chắc", c: "#F59E0B" },
+      { n: "Bình thông nhau", v: 38, s: "Cần ôn lại", c: "#F43F5E" }
+    ];
+    $('#rings').innerHTML = GOALS.map((g, i) => `
+ <div class="ring">
+   <svg viewBox="0 0 120 120" role="img" aria-label="${g.n}: ${g.v} phần trăm, ${g.s}">
+     <circle cx="60" cy="60" r="50" fill="none" stroke="#F1F5F9" stroke-width="11"/>
+     <circle class="rg" data-v="${g.v}" cx="60" cy="60" r="50" fill="none" stroke="${g.c}" stroke-width="11"
+       stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"/>
+   </svg>
+   <div class="pc">${g.v}%</div>
+   <div class="nm">${g.n}</div>
+   <div class="st" style="color:${g.c}">${g.s}</div>
+ </div>`).join('');
+    new IntersectionObserver((e, o) => {
+      if (e[0].isIntersecting) {
+        $$('.rg').forEach((c, i) => setTimeout(() => { c.style.transition = 'stroke-dashoffset 1.15s cubic-bezier(.2,.8,.2,1)'; c.style.strokeDashoffset = 314 - 314 * (+c.dataset.v) / 100 }, RM ? 0 : i * 150)); o.disconnect()
+      }
+    }, { threshold: .35 }).observe($('#rings'));
+
+    /* ---------- GROWTH LINE ---------- */
+    const LES = [
+      { d: "28/07", v: 55, t: "Bài Áp lực — em còn lẫn giữa áp lực và áp suất" },
+      { d: "04/08", v: 60, t: "Bài tập vận dụng — bắt đầu quen công thức" },
+      { d: "08/08", v: 58, t: "Hôm này em vắng nửa tiết" },
+      { d: "14/08", v: 70, t: "Em phát biểu 2 lần, làm đúng 7 câu" },
+      { d: "20/08", v: 72, t: "Bài Áp suất khí quyển" },
+      { d: "25/08", v: 80, t: "Hôm nay — 8/10 câu, cao nhất từ đầu học kỳ" }
+    ];
+    const GW = 900, GH = 280, GM = { t: 34, r: 26, b: 44, l: 44 };
+    const gx = i => GM.l + i * (GW - GM.l - GM.r) / 5, gy = v => GM.t + (100 - v) / 100 * (GH - GM.t - GM.b) * 1.0;
+    (function () {
+      const s = $('#growth');
+      const dg = el('linearGradient', { id: 'gg', x1: 0, y1: 0, x2: 0, y2: 1 });
+      dg.append(el('stop', { offset: '0%', 'stop-color': '#0EA5E9', 'stop-opacity': .26 }), el('stop', { offset: '100%', 'stop-color': '#0EA5E9', 'stop-opacity': 0 }));
+      const df = el('defs'); df.append(dg); s.append(df);
+      [40, 60, 80, 100].forEach(v => {
+        s.append(el('line', { x1: GM.l, y1: gy(v), x2: GW - GM.r, y2: gy(v), stroke: '#F1F5F9' }));
+        const t = el('text', { x: GM.l - 10, y: gy(v) + 4, fill: '#CBD5E1', 'font-size': 11, 'text-anchor': 'end' }); t.textContent = v + '%'; s.append(t);
+      });
+      const avg = el('line', { x1: GM.l, y1: gy(74), x2: GW - GM.r, y2: gy(74), stroke: '#CBD5E1', 'stroke-dasharray': '6 5' }); s.append(avg);
+      const at = el('text', { x: GW - GM.r, y: gy(74) - 8, fill: '#94A3B8', 'font-size': 11, 'text-anchor': 'end', 'font-weight': 600 });
+      at.textContent = 'Trung bình lớp hôm nay 74%'; s.append(at);
+
+      const path = LES.map((l, i) => `${i ? 'L' : 'M'}${gx(i)},${gy(l.v)}`).join(' ');
+      const ar = el('path', { d: path + ` L${gx(5)},${gy(40)} L${gx(0)},${gy(40)} Z`, fill: 'url(#gg)', opacity: 0 }); s.append(ar);
+      const p = el('path', { d: path, fill: 'none', stroke: '#0EA5E9', 'stroke-width': 3.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }); s.append(p);
+      const L = p.getTotalLength();
+      if (!RM) { p.style.strokeDasharray = L; p.style.strokeDashoffset = L; }
+      new IntersectionObserver((e, o) => {
+        if (e[0].isIntersecting) {
+          p.style.transition = 'stroke-dashoffset 1.7s cubic-bezier(.3,.8,.3,1)'; p.style.strokeDashoffset = 0;
+          ar.style.transition = 'opacity .8s .7s'; ar.style.opacity = 1; o.disconnect()
+        }
+      }, { threshold: .3 }).observe(s);
+
+      LES.forEach((l, i) => {
+        const last = i === 5;
+        const hit = el('circle', { cx: gx(i), cy: gy(l.v), r: 20, fill: 'transparent', style: 'cursor:pointer' });
+        const c = el('circle', { cx: gx(i), cy: gy(l.v), r: 0, fill: '#fff', stroke: last ? '#0D9488' : '#0EA5E9', 'stroke-width': last ? 4.5 : 3 });
+        s.append(c);
+        setTimeout(() => { c.style.transition = 'r .4s cubic-bezier(.3,1.5,.5,1)'; c.setAttribute('r', last ? 8 : 5) }, RM ? 0 : 500 + i * 140);
+        const t = el('text', { x: gx(i), y: gy(l.v) - 18, fill: last ? '#0D9488' : '#94A3B8', 'font-size': last ? 13 : 11.5, 'font-weight': last ? 700 : 600, 'text-anchor': 'middle', opacity: 0 });
+        t.textContent = l.v + '%'; s.append(t);
+        setTimeout(() => { t.style.transition = 'opacity .4s'; t.setAttribute('opacity', 1) }, RM ? 0 : 640 + i * 140);
+        const lb = el('text', { x: gx(i), y: GH - 14, fill: last ? '#0F172A' : '#94A3B8', 'font-size': 11.5, 'text-anchor': 'middle', 'font-weight': last ? 700 : 500 });
+        lb.textContent = last ? 'Hôm nay' : l.d; s.append(lb);
+        s.append(hit);
+        const tip = $('#gtip'), svg = $('#growth');
+        hit.addEventListener('mouseenter', () => {
+          const r = svg.getBoundingClientRect();
+          tip.style.opacity = 1; tip.style.left = (gx(i) / GW * r.width) + 'px'; tip.style.top = (gy(l.v) / GH * r.height) + 'px';
+          tip.innerHTML = `${l.d} · <b>${l.v}%</b><br/>${l.t}`;
+        });
+        hit.addEventListener('mouseleave', () => tip.style.opacity = 0);
+      });
+    })();
+
+    /* ---------- ANSWER STYLE ---------- */
+    const AST = [
+      { n: 6, k: "Chắc tay", d: "Bấm nhanh và đúng. Phần này em thật sự hiểu.", c: "#14B8A6", bg: "var(--teal-50)" },
+      { n: 2, k: "Nghĩ kỹ rồi đúng", d: "Mất hơn 20 giây nhưng ra kết quả đúng. Vẫn tốt, chỉ cần luyện cho quen tay.", c: "#0EA5E9", bg: "var(--sky-50)" },
+      { n: 1, k: "Bấm vội rồi sai", d: "Dưới 6 giây đã chọn. Câu này đọc lại đề chắc sẽ khác.", c: "#F59E0B", bg: "var(--amber-50)" },
+      { n: 1, k: "Chưa nắm", d: "Nghĩ lâu mà vẫn sai. Đây là chỗ cần xem lại lý thuyết.", c: "#F43F5E", bg: "var(--rose-50)" }
+    ];
+    $('#astyle').innerHTML = AST.map(a => `<div class="as" style="background:${a.bg};border-color:transparent">
+  <div class="n" style="color:${a.c}">${a.n} câu</div><div class="k">${a.k}</div><div class="d">${a.d}</div></div>`).join('');
+
+    /* ---------- BAND + STREAK ---------- */
+    new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { $('#bandMe').style.left = 'calc(80% - 2px)'; o.disconnect() } }, { threshold: .4 }).observe($('#bandMe'));
+    $('#streak').innerHTML = [["T7", 0], ["T1", 1], ["T2", 1], ["T3", 0], ["T4", 1], ["T5", 1]].map((d, i) =>
+      `<div class="sd ${d[1] ? 'hit' : ''}" style="transition-delay:${i * 70}ms">${d[0]}</div>`).join('');
+
+    /* ---------- MOMENTS ---------- */
+    const MO = [
+      { t: "Phút 4", h: "Em trả lời câu mở bài", p: "Cô hỏi vì sao lặn sâu thấy tức tai, em giơ tay đầu tiên.", c: "#14B8A6", i: '<path d="M20 6 9 17l-5-5"/>' },
+      { t: "Phút 9", h: "Em kéo thử vật trong thí nghiệm ảo 6 lần", p: "Nhiều hơn phần lớn các bạn. Em chịu khó thử là điểm mạnh.", c: "#0EA5E9", i: '<path d="M12 2v20M2 12h20"/>' },
+      { t: "Phút 21", h: "Em rời khỏi bài khoảng 3 phút", p: "Đúng lúc cô chuyển sang phần công thức. Nếu chỗ nào chưa kịp hiểu, hỏi lại là được.", c: "#F59E0B", i: '<path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/>' },
+      { t: "Phút 27", h: "Em giải thích cho bạn cùng bàn", p: "Hệ thống ghi nhận em nói nhiều nhất trong nhóm đôi. Giảng lại cho bạn là cách nhớ lâu nhất.", c: "#8B5CF6", i: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>' },
+      { t: "Phút 36", h: "Em làm đúng 5 trong 6 câu vòng cuối", p: "Càng về cuối em càng chắc tay. Nhịp này giữ được là tốt.", c: "#0D9488", i: '<path d="m3 17 6-6 4 4 8-8"/>' }
+    ];
+    $('#moments').innerHTML = MO.map(m => `<div class="mo">
+  <div class="mo-dot" style="border-color:${m.c}"><svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px;color:${m.c}">${m.i}</svg></div>
+  <div><div class="mo-t">${m.t}</div><div class="mo-h">${m.h}</div><div class="mo-p">${m.p}</div></div></div>`).join('');
+
+    /* ---------- REVIEW ---------- */
+    const WRONG = [
+      {
+        q: "Bình thông nhau có hai nhánh to nhỏ khác nhau, mực nước hai bên thế nào?",
+        you: "Nhánh to cao hơn", right: "Ngang bằng nhau",
+        why: "Nhánh to đựng nhiều nước hơn thật, nhưng nước dâng đến đâu là do áp suất ở đáy, không do lượng nước. Hai nhánh nối thông nhau nên áp suất đáy phải bằng nhau, mà p = d·h thì d giống nhau, vậy h cũng phải giống nhau. Thử với hai chai nước nối bằng ống nhựa sẽ thấy ngay."
+      },
+      {
+        q: "Nước sâu 2 m, trọng lượng riêng 10000 N/m³. Áp suất tại đó bằng bao nhiêu?",
+        you: "2000 Pa", right: "20000 Pa",
+        why: "Cách làm của em đúng, chỉ nhân thiếu một số 0. 10000 × 2 = 20000. Câu này em không sai về hiểu bài, chỉ cần tính chậm lại một nhịp là được."
+      }
+    ];
+    $('#review').innerHTML = WRONG.map((w, i) => `<div class="rq" data-i="${i}">
+  <button class="rq-h" aria-expanded="false"><div class="rq-n">${i + 1}</div><div class="rq-q">${w.q}</div>
+    <svg class="ic rq-c" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="rq-b"><div class="rq-in">
+    <div class="ansrow"><span class="badge" style="background:var(--rose-50);color:#BE123C">Em chọn</span><span>${w.you}</span></div>
+    <div class="ansrow"><span class="badge" style="background:var(--teal-50);color:#0F766E">Đáp án</span><span>${w.right}</span></div>
+    <div class="why">${w.why}</div>
+  </div></div></div>`).join('');
+    $$('.rq-h').forEach(b => b.addEventListener('click', () => {
+      const r = b.parentElement, was = r.classList.contains('open');
+      $$('.rq').forEach(x => { x.classList.remove('open'); $('.rq-h', x).setAttribute('aria-expanded', 'false') });
+      if (!was) { r.classList.add('open'); b.setAttribute('aria-expanded', 'true') }
+    }));
+    setTimeout(() => $$('.rq-h')[0].click(), RM ? 0 : 1600);
+
+    /* ---------- TODO ---------- */
+    $('#todo').innerHTML = [
+      ["Lấy hai chai nhựa nối bằng ống hút", "Đổ nước vào một bên rồi xem bên kia dâng tới đâu. Làm một lần là nhớ hơn đọc mười lần.", "khoảng 5 phút"],
+      ["Làm lại bài 8.3 và 8.4 trong sách", "Hai bài này đúng dạng câu em tính nhầm số 0. Viết rõ từng bước, đừng nhẩm.", "khoảng 7 phút"],
+      ["Hỏi cô một câu đầu giờ sau", "Hỏi vì sao nhánh to không làm nước cao hơn. Em đã gần hiểu rồi, chỉ thiếu một câu chốt.", "1 phút"]
+    ].map((t, i) => `<div class="td"><div class="td-n">${i + 1}</div>
+  <div><div class="td-h">${t[0]}</div><div class="td-p">${t[1]}</div><span class="td-m">${t[2]}</span></div></div>`).join('');
+  </script>
+</body>
+
+</html>

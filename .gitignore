@@ -1,0 +1,21 @@
+# Phụ thuộc và thư mục build
+node_modules/
+.next/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+
+# Liên kết Vercel của từng máy (chứa mã dự án/tài khoản, không chia sẻ)
+.vercel/
+
+# Biến môi trường, bí mật
+.env*
+
+# Kết quả kiểm thử
+test-results/
+playwright-report/
+
+# Rác hệ điều hành / Office
+.DS_Store
+Thumbs.db
+~$*

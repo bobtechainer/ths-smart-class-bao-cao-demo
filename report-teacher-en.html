@@ -1,0 +1,514 @@
+<meta charset="utf-8">
+<title>Class 7A3 Lesson Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand-25:#F6FAFE; --brand-50:#EEF5FC; --brand-100:#DDEBFA; --brand-200:#BED9F6;
+    --brand-300:#96C6F0; --brand-400:#70B0EA; --brand-500:#4A97E0; --brand-600:#237BD3;
+    --brand-700:#0060A6; --brand-800:#053A6B; --brand-900:#041F4A; --brand-950:#02122E;
+    --gray-25:#FCFCFD; --gray-50:#F9FAFB; --gray-100:#F2F4F7; --gray-200:#EAECF0;
+    --gray-300:#D0D5DD; --gray-400:#98A2B3; --gray-500:#667085; --gray-600:#475467;
+    --gray-700:#344054; --gray-800:#182230; --gray-900:#101828;
+    --success-50:#ECFDF3; --success-500:#12B76A; --success-600:#039855; --success-700:#027A48;
+    --error-50:#FEF3F2; --error-400:#F97066; --error-500:#F04438; --error-600:#D92D20; --error-700:#B42318;
+    --warning-50:#FFF5E7; --warning-100:#FFE9CC; --warning-500:#FFA23A; --warning-600:#E88616; --warning-700:#BA670C;
+    --teal-50:#F0FDF9; --teal-600:#0E9384; --violet-600:#7839EE;
+    --text-primary:#101828; --text-secondary:#475467; --text-tertiary:#667085;
+    --shadow-xs:0 1px 2px 0 rgba(10,13,18,.05);
+    --shadow-sm:0 1px 3px 0 rgba(10,13,18,.10),0 1px 2px -1px rgba(10,13,18,.10);
+    --shadow-lg:0 12px 16px -4px rgba(10,13,18,.08),0 4px 6px -2px rgba(10,13,18,.03);
+    --font:'SFUIText','Be Vietnam Pro','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--gray-50);color:var(--text-primary);
+    font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  svg{display:block}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ---------- topbar ---------- */
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-200)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:var(--brand-900)}
+  .logo>svg{width:34px;height:34px;flex:none}
+  .live-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--gray-200);background:var(--gray-50);
+    color:var(--gray-600);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:500}
+  .live-badge .dot{width:7px;height:7px;border-radius:99px;background:var(--success-500)}
+
+  /* ---------- hero ---------- */
+  .hero{background:linear-gradient(160deg,var(--brand-800) 0%,var(--brand-900) 55%,var(--brand-950) 100%);
+    color:#fff;padding:48px 0 96px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(600px 280px at 85% -10%,rgba(74,151,224,.28),transparent 70%),
+               radial-gradient(420px 240px at 8% 110%,rgba(35,123,211,.22),transparent 70%)}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-300)}
+  .hero h1{font-size:32px;line-height:1.25;font-weight:800;letter-spacing:-.02em;margin:10px 0 6px}
+  .hero .sub{color:var(--brand-200);font-size:15px}
+  .meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 13px;font-size:13px;color:#E8F1FB}
+  .chip svg{width:14px;height:14px;stroke:var(--brand-300)}
+
+  /* ---------- KPI cards overlap ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-56px;position:relative;z-index:2}
+  .kpi{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow-sm);
+    transition:transform .18s ease,box-shadow .18s ease}
+  .kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .kpi .icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;margin-bottom:12px}
+  .kpi .icon svg{width:19px;height:19px}
+  .kpi h3{font-size:13px;font-weight:500;color:var(--text-tertiary)}
+  .kpi .big{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-top:2px}
+  .kpi .big small{font-size:16px;font-weight:600;color:var(--gray-400)}
+  .kpi .note{font-size:13px;color:var(--text-secondary);margin-top:6px}
+  .up{color:var(--success-700);font-weight:600}
+
+  /* ---------- sections & cards ---------- */
+  section{margin-top:44px}
+  .sec-head{margin-bottom:16px;max-width:720px}
+  .sec-kicker{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--brand-600)}
+  .sec-head h2{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-top:4px}
+  .sec-head p{color:var(--text-secondary);margin-top:4px;font-size:14.5px}
+  .card{background:#fff;border:1px solid var(--gray-200);border-radius:16px;box-shadow:var(--shadow-xs);padding:24px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid-32{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+
+  /* ---------- chart bits ---------- */
+  .chart-title{font-size:15px;font-weight:600}
+  .chart-sub{font-size:13px;color:var(--text-tertiary);margin-top:2px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:13px;color:var(--text-secondary)}
+  .legend b{color:var(--text-primary);font-weight:600}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .tooltip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--gray-200);border-radius:10px;
+    box-shadow:var(--shadow-lg);padding:8px 12px;font-size:12.5px;color:var(--text-secondary);white-space:nowrap;
+    opacity:0;transform:translateY(4px);transition:opacity .12s ease,transform .12s ease;z-index:5}
+  .tooltip b{color:var(--text-primary)}
+  .tooltip.show{opacity:1;transform:translateY(0)}
+  .chart-box{position:relative}
+  details.data-table{margin-top:14px;font-size:13px;color:var(--text-secondary)}
+  details.data-table summary{cursor:pointer;color:var(--brand-700);font-weight:500;width:max-content}
+  details.data-table table{border-collapse:collapse;margin-top:10px;width:100%}
+  details.data-table th,details.data-table td{border:1px solid var(--gray-200);padding:5px 10px;text-align:left}
+  details.data-table th{background:var(--gray-50);font-weight:600;color:var(--text-secondary)}
+
+  .callout{display:flex;gap:12px;border-radius:12px;padding:14px 16px;font-size:14px;margin-top:16px}
+  .callout svg{width:18px;height:18px;flex:none;margin-top:2px}
+  .callout.warn{background:var(--warning-50);border:1px solid var(--warning-100);color:#7A4A08}
+  .callout.good{background:var(--success-50);border:1px solid #D1FADF;color:var(--success-700)}
+  .callout.info{background:var(--brand-50);border:1px solid var(--brand-100);color:var(--brand-800)}
+
+  /* ---------- quiz bars ---------- */
+  .qrow{display:grid;grid-template-columns:200px 1fr 120px;gap:14px;align-items:center;padding:13px 0;border-top:1px solid var(--gray-100)}
+  .qrow:first-of-type{border-top:0}
+  .qname{font-size:14px;font-weight:600}
+  .qname span{display:block;font-weight:400;font-size:12.5px;color:var(--text-tertiary)}
+  .qbar{display:flex;height:22px;border-radius:6px;overflow:hidden;gap:2px;background:var(--gray-100)}
+  .qseg{height:100%;transform-origin:left;transform:scaleX(0);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .in .qseg{transform:scaleX(1)}
+  .qpct{font-size:13.5px;color:var(--text-secondary);text-align:right}
+  .qpct b{color:var(--text-primary)}
+  .opt{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:13.5px}
+  .opt .bar{flex:1;height:8px;border-radius:99px;background:var(--gray-100);overflow:hidden}
+  .opt .bar i{display:block;height:100%;border-radius:99px;transform-origin:left;transform:scaleX(0);transition:transform .7s ease .15s}
+  .in .opt .bar i{transform:scaleX(1)}
+  .opt .lbl{width:210px;color:var(--text-secondary)}
+  .opt .val{width:44px;text-align:right;color:var(--text-secondary);font-size:12.5px}
+
+  /* ---------- table ---------- */
+  table.students{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.students th{font-size:12px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.04em;
+    text-align:left;padding:10px 12px;border-bottom:1px solid var(--gray-200);background:var(--gray-25)}
+  table.students td{padding:11px 12px;border-bottom:1px solid var(--gray-100);color:var(--text-secondary);vertical-align:middle}
+  table.students tr:hover td{background:var(--brand-25)}
+  .st{display:flex;align-items:center;gap:10px;color:var(--text-primary);font-weight:600}
+  .avatar{width:32px;height:32px;border-radius:99px;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+  .badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500;white-space:nowrap}
+  .badge .d{width:6px;height:6px;border-radius:99px}
+  .b-green{background:var(--success-50);color:var(--success-700)} .b-green .d{background:var(--success-500)}
+  .b-gray{background:var(--gray-100);color:var(--gray-600)} .b-gray .d{background:var(--gray-400)}
+  .b-orange{background:var(--warning-50);color:var(--warning-700)} .b-orange .d{background:var(--warning-500)}
+  .b-red{background:var(--error-50);color:var(--error-700)} .b-red .d{background:var(--error-500)}
+  .b-blue{background:var(--brand-50);color:var(--brand-700)} .b-blue .d{background:var(--brand-600)}
+  .mini-dots{display:inline-flex;gap:3px;vertical-align:middle}
+  .mini-dots i{width:8px;height:8px;border-radius:2.5px;background:var(--gray-200)}
+  .mini-dots i.on{background:var(--brand-500)}
+
+  /* ---------- suggestions ---------- */
+  .sugs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .sug{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:22px;box-shadow:var(--shadow-xs);
+    transition:transform .18s ease,box-shadow .18s ease}
+  .sug:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .sug .n{width:30px;height:30px;border-radius:99px;background:var(--brand-50);color:var(--brand-700);
+    display:grid;place-items:center;font-weight:700;font-size:14px;margin-bottom:12px}
+  .sug h3{font-size:15px;font-weight:600;margin-bottom:6px}
+  .sug p{font-size:13.5px;color:var(--text-secondary)}
+  .sug .from{margin-top:12px;font-size:12px;color:var(--text-tertiary);border-top:1px dashed var(--gray-200);padding-top:10px}
+
+  footer{margin:56px 0 40px;color:var(--text-tertiary);font-size:13px;text-align:center}
+  footer .eco{color:var(--text-secondary)}
+
+  /* ---------- reveal & motion ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+    .reveal{opacity:1;transform:none}
+    .qseg,.opt .bar i{transform:scaleX(1)}
+  }
+  @media (max-width:900px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .grid-2,.grid-32,.sugs{grid-template-columns:1fr}
+    .hero h1{font-size:25px}
+    .qrow{grid-template-columns:1fr;gap:8px}
+    .qpct{text-align:left}
+    .tbl-scroll{overflow-x:auto}
+  }
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="logo"><svg viewBox="0 0 27 24" width="34" height="34" aria-hidden="true"><path d="M12.2382 0.250738L0.508486 5.10733C-0.169495 5.38842 -0.169495 6.3479 0.508486 6.629L12.2389 11.4848C13.0466 11.8192 13.9534 11.8192 14.7611 11.4848L26.4915 6.629C27.1695 6.34865 27.1695 5.38842 26.4915 5.10733L14.7611 0.250738C13.9534 -0.0835792 13.0466 -0.0835792 12.2389 0.250738H12.2382ZM13.4951 10.3575C12.5839 10.3575 11.8459 9.61836 11.8474 8.70761C11.8489 7.83059 12.5524 7.09974 13.4291 7.06526C14.3689 7.02853 15.1428 7.77962 15.1428 8.71061C15.1428 9.6416 14.4049 10.3575 13.4951 10.3575Z" fill="#ED1C24"/><path d="M25.0358 10.248V18.6142C25.0358 19.2806 24.6346 19.881 24.0188 20.1359L20.1287 21.746V18.2589L21.9452 17.5063V14.7358C22.3179 14.6391 22.5886 14.2883 22.5594 13.8798C22.5301 13.4578 22.1739 13.1219 21.7502 13.1159C21.2889 13.1092 20.9139 13.4802 20.9139 13.939C20.9139 14.3235 21.1772 14.6459 21.5334 14.7366V17.2319L20.1287 17.8136L19.717 17.9845V21.9176L16.2858 23.3381C15.7436 23.563 15.1466 23.1642 15.1466 22.5773V18.54L18.6452 17.0918V16.1106C19.0202 16.0161 19.2932 15.6646 19.264 15.2538C19.2347 14.843 18.8777 14.4952 18.454 14.4892C17.9935 14.4824 17.6185 14.8535 17.6185 15.3122C17.6185 15.6953 17.8795 16.0161 18.2328 16.1083V16.8159L15.1458 18.094V14.2103C15.1458 13.544 15.5471 12.9435 16.1628 12.6887L23.8966 9.48718C24.4388 9.2623 25.0358 9.66109 25.0358 10.248Z" fill="#0061AF"/><path d="M1.96269 10.248V18.6142C1.96269 19.2806 2.36393 19.881 2.97967 20.1358L6.86981 21.746V18.2589L5.05336 17.5063V14.7358C4.68062 14.6391 4.40988 14.2883 4.43913 13.8798C4.46837 13.4712 4.82462 13.1219 5.24835 13.1159C5.70959 13.1092 6.08458 13.4802 6.08458 13.939C6.08458 14.3235 5.82134 14.6459 5.4651 14.7366V17.2319L6.86981 17.8136L7.28155 17.9845V21.9176L10.7127 23.3381C11.2549 23.563 11.8519 23.1642 11.8519 22.5773V18.54L8.35327 17.0918V16.1106C7.97828 16.0161 7.70528 15.6645 7.73453 15.2538C7.76378 14.843 8.12077 14.4952 8.54451 14.4892C9.005 14.4824 9.37999 14.8535 9.37999 15.3122C9.37999 15.6953 9.119 16.0161 8.76576 16.1083V16.8159L11.8527 18.094V14.2103C11.8527 13.544 11.4514 12.9435 10.8357 12.6887L3.10116 9.48793C2.55893 9.26305 1.96194 9.66183 1.96194 10.2488L1.96269 10.248Z" fill="#0061AF"/></svg> Smart Class <span style="font-weight:400;color:var(--gray-400)">· Digital School</span></div>
+    <span class="live-badge"><span class="dot"></span> Updated 9:52 · 25 Aug 2026</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">After-lesson report · for teachers</div>
+    <h1 class="reveal" style="transition-delay:.06s">Maths 7 · Class 7A3 — Direct proportion</h1>
+    <div class="sub reveal" style="transition-delay:.1s">21 of the 23 students present spoke up at least once. On quiz question 2, eight students made the same mistake. There is a way to work through it below.</div>
+    <div class="meta-chips reveal" style="transition-delay:.14s">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor"/></svg>Tuesday, 25 August 2026</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9" stroke="currentColor"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-linecap="round"/></svg>Period 3 · 9:05 – 9:50</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4" stroke="currentColor"/><path d="M4 21c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" stroke="currentColor" stroke-linecap="round"/></svg>Ms Nguyễn Thu Hằng</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14" stroke="currentColor"/><path d="M2 19h20" stroke="currentColor" stroke-linecap="round"/></svg>Smart classroom 2.1</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <!-- KPI -->
+  <div class="kpis">
+    <div class="kpi reveal">
+      <div class="icon" style="background:var(--brand-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-600)" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1.2-3 3.6-4.5 6.5-4.5s5.3 1.5 6.5 4.5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 15.7c2.6.2 4.6 1.6 5.5 4.3"/></svg></div>
+      <h3>Present</h3>
+      <div class="big num"><span data-count="23">0</span><small>/25 students</small></div>
+      <div class="note">3 arrived 8 minutes late · 2 excused absences</div>
+    </div>
+    <div class="kpi reveal" style="transition-delay:.07s">
+      <div class="icon" style="background:var(--success-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V6a1.6 1.6 0 0 1 3.2 0v4M10.2 10V4.5a1.6 1.6 0 0 1 3.2 0V10M13.4 10.2V6a1.6 1.6 0 0 1 3.2 0v6.5"/><path d="M16.6 12.5c1.8.5 2.6 1.6 2.2 3.6-.5 2.8-2.2 5.4-5.8 5.4-3 0-4.3-1-5.8-3.4L4.6 14c-.7-1-.2-2.2.9-2.5.8-.2 1.5.1 2 .8L9 14.5"/></svg></div>
+      <h3>Spoke up at least once</h3>
+      <div class="big num"><span data-count="21">0</span><small>/23 students</small></div>
+      <div class="note"><span class="up">91% of the class</span> · 2 students still have not</div>
+    </div>
+    <div class="kpi reveal" style="transition-delay:.14s">
+      <div class="icon" style="background:var(--warning-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-600)" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H13L13 2z"/></svg></div>
+      <h3>Total interactions</h3>
+      <div class="big num"><span data-count="214">0</span><small> in total</small></div>
+      <div class="note">Hands raised 42 · answers &amp; chat 96 · quiz &amp; game 76</div>
+    </div>
+    <div class="kpi reveal" style="transition-delay:.21s">
+      <div class="icon" style="background:var(--brand-50)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
+      <h3>Average focus level</h3>
+      <div class="big num"><span data-count="78">0</span><small>/100</small></div>
+      <div class="note">Peaked at 95 in minute 34, during the review game</div>
+    </div>
+  </div>
+
+  <!-- ENGAGEMENT TIMELINE -->
+  <section>
+    <div class="sec-head reveal">
+      <div class="sec-kicker">How the lesson went</div>
+      <h2>Class focus across the 45 minutes</h2>
+      <p>Measured once a minute. Set next to the lesson activities, it shows where the class kept up and where it drifted.</p>
+    </div>
+    <div class="card reveal chart-box" style="transition-delay:.05s">
+      <div class="chart-title">Focus level, minute by minute</div>
+      <div class="chart-sub">Hover over the chart to read any minute</div>
+      <div id="engWrap" style="margin-top:14px"></div>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--brand-600)"></span>Class focus level</span>
+        <span><span class="sw" style="background:var(--gray-100);border:1px solid var(--gray-200)"></span>Shaded band: activity in progress</span>
+      </div>
+      <div class="callout warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-600)" stroke-width="2" stroke-linecap="round"><path d="M12 3 2.5 20h19L12 3z" stroke-linejoin="round"/><path d="M12 10v4M12 17.5v.5"/></svg>
+        <div><b>Minutes 18–27 the class dropped off, down to 60.</b> That stretch was 12 minutes of straight lecture with nothing in between. In the next long theory section, stopping for one quick 30-second question around minute 8 would help.</div>
+      </div>
+      <div class="callout good">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--success-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <div><b>During the review game, focus stayed above 85 for a full 12 minutes</b>, the highest of any activity in the lesson. This kind of review is worth using again.</div>
+      </div>
+      <details class="data-table">
+        <summary>View as a data table</summary>
+        <table id="engTable"></table>
+      </details>
+      <div class="tooltip" id="engTip"></div>
+    </div>
+  </section>
+
+  <!-- PARTICIPATION EQUITY -->
+  <section>
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Who took part</div>
+      <h2>Which students spoke up, and which did not</h2>
+      <p>Counted per student rather than as a class total, so no one sits out a whole lesson unnoticed.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal chart-box">
+        <div class="chart-title">What the 214 interactions were</div>
+        <div class="chart-sub">Broken down by type of interaction</div>
+        <div style="display:flex;align-items:center;gap:28px;margin-top:16px;flex-wrap:wrap">
+          <svg id="donut" width="190" height="190" viewBox="0 0 190 190" role="img" aria-label="Breakdown of 214 interactions: answers and chat 96, quiz and game 76, hands raised 42"></svg>
+          <div style="flex:1;min-width:200px">
+            <div class="legend" style="flex-direction:column;gap:12px;margin-top:0">
+              <span><span class="sw" style="background:var(--brand-600)"></span>Answers &amp; chat — <b class="num">96 (45%)</b></span>
+              <span><span class="sw" style="background:var(--warning-600)"></span>Quiz &amp; game answers — <b class="num">76 (36%)</b></span>
+              <span><span class="sw" style="background:var(--teal-600)"></span>Hands raised — <b class="num">42 (19%)</b></span>
+            </div>
+            <p style="font-size:13px;color:var(--text-tertiary);margin-top:14px">Answers and chat make up nearly half, more than the quiz answers. The class speaks up on its own, not only when called on.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal chart-box" style="transition-delay:.07s">
+        <div class="chart-title">How many times each student spoke</div>
+        <div class="chart-sub">Number of students by their own interaction count</div>
+        <div id="histWrap" style="margin-top:14px"></div>
+        <div class="callout warn" style="margin-top:14px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-600)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+          <div><b>Gia Bảo and Khánh Vy did not speak once.</b> Staying quiet does not always mean not following the lesson. At the start of the next lesson, call on these two first, with a question they can definitely answer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ ANALYSIS -->
+  <section>
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Quiz results</div>
+      <h2>Three quick questions, and the class got stuck on question 2</h2>
+      <p>The class did well on questions 1 and 3. Only 15 of 23 got question 2 right, and all eight who missed it picked the same option. They are slipping in the same place.</p>
+    </div>
+    <div class="card reveal">
+      <div class="qrow">
+        <div class="qname">Question 1 · Multiple choice<span>Recognising a directly proportional quantity · 2.1s average</span></div>
+        <div class="qbar" role="img" aria-label="Question 1: 87% correct, 9% wrong, 4% skipped">
+          <div class="qseg" style="width:87%;background:var(--success-500)"></div>
+          <div class="qseg" style="width:9%;background:var(--error-400);transition-delay:.15s"></div>
+          <div class="qseg" style="width:4%;background:var(--gray-300);transition-delay:.25s"></div>
+        </div>
+        <div class="qpct num"><b>87% correct</b> · 20 of 23</div>
+      </div>
+      <div class="qrow">
+        <div class="qname">Question 2 · Multiple choice<span>Telling direct from inverse proportion · 6.2s average</span></div>
+        <div class="qbar" role="img" aria-label="Question 2: 65% correct, 35% wrong">
+          <div class="qseg" style="width:65%;background:var(--success-500)"></div>
+          <div class="qseg" style="width:35%;background:var(--error-400);transition-delay:.15s"></div>
+        </div>
+        <div class="qpct num"><b>65% correct</b> · 15 of 23</div>
+      </div>
+      <div class="qrow">
+        <div class="qname">Question 3 · True / false<span>Finding the constant k from a table · 3.4s average</span></div>
+        <div class="qbar" role="img" aria-label="Question 3: 96% correct, 4% wrong">
+          <div class="qseg" style="width:96%;background:var(--success-500)"></div>
+          <div class="qseg" style="width:4%;background:var(--error-400);transition-delay:.15s"></div>
+        </div>
+        <div class="qpct num"><b>96% correct</b> · 22 of 23</div>
+      </div>
+      <div class="legend"><span><span class="sw" style="background:var(--success-500)"></span>Correct</span><span><span class="sw" style="background:var(--error-400)"></span>Wrong</span><span><span class="sw" style="background:var(--gray-300)"></span>Skipped</span></div>
+    </div>
+
+    <div class="grid-32" style="margin-top:16px">
+      <div class="card reveal">
+        <div class="chart-title">Question 2: what the wrong answers were</div>
+        <p style="font-size:14px;color:var(--text-secondary);margin-top:8px">“Given y = 3/x, is y directly proportional to x?” — How the 23 students answered:</p>
+        <div class="opt"><span class="lbl">No, because y falls as x rises <b style="color:var(--success-700)">(correct)</b></span><span class="bar"><i style="width:65%;background:var(--success-500)"></i></span><span class="val num">15</span></div>
+        <div class="opt"><span class="lbl">Yes, because y is always worked out from x</span><span class="bar"><i style="width:26%;background:var(--error-400)"></i></span><span class="val num">6</span></div>
+        <div class="opt"><span class="lbl">Yes, because 3 is the constant</span><span class="bar"><i style="width:9%;background:var(--error-400)"></i></span><span class="val num">2</span></div>
+        <div class="callout info" style="margin-top:16px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-700)" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg>
+          <div>All eight who got it wrong chose an option starting with <b>“Yes”</b>. They are reading any formula that links two quantities as direct proportion. When going over it, have them build a table with x = 1, 2, 3 and fill in y themselves. Once they see y coming down, they spot the mistake without the definition being restated.</div>
+        </div>
+      </div>
+      <div class="card reveal" style="transition-delay:.07s">
+        <div class="chart-title">End-of-lesson review game</div>
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--text-secondary)">
+          <div style="display:flex;justify-content:space-between;border-bottom:1px dashed var(--gray-200);padding-bottom:10px"><span>10-question race</span><b class="num" style="color:var(--text-primary)">23 of 23 played</b></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px dashed var(--gray-200);padding-bottom:10px"><span>Average correct</span><b class="num" style="color:var(--text-primary)">7.2 of 10</b></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px dashed var(--gray-200);padding-bottom:10px"><span>Got all 10 right</span><b class="num" style="color:var(--text-primary)">5 students</b></div>
+          <div style="display:flex;justify-content:space-between"><span>Bonus points awarded in the lesson</span><b class="num" style="color:var(--text-primary)">1,550 points</b></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-tertiary);margin-top:14px">All 23 played, including the two who never spoke up. For students who are shy about talking, the game is the easiest way in.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PER STUDENT -->
+  <section>
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Student by student</div>
+      <h2>How each student did in the lesson</h2>
+      <p>Students to check in with first are at the top. Showing 10 of 25.</p>
+    </div>
+    <div class="card reveal tbl-scroll" style="padding:8px 0 0">
+      <table class="students">
+        <thead><tr>
+          <th>Student</th><th>Attendance</th><th>Times spoke</th><th>Quiz</th><th>Game</th><th>Bonus</th><th>Note</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--warning-50);color:var(--warning-700)">GB</span>Nguyễn Gia Bảo</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">0</td><td class="num">1/3</td><td class="num">4/10</td><td class="num">+20</td><td><span class="badge b-orange"><span class="d"></span>Worth checking in</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--warning-50);color:var(--warning-700)">KV</span>Trần Khánh Vy</span></td><td><span class="badge b-orange"><span class="d"></span>8 min late</span></td><td class="num">0</td><td class="num">2/3</td><td class="num">6/10</td><td class="num">+45</td><td><span class="badge b-orange"><span class="d"></span>Worth checking in</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--gray-100);color:var(--gray-600)">HP</span>Lê Hoàng Phúc</span></td><td><span class="badge b-red"><span class="d"></span>Excused absence</span></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="badge b-gray"><span class="d"></span>Send catch-up work</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--brand-50);color:var(--brand-700)">MA</span>Phạm Minh Anh</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">7</td><td class="num">2/3</td><td class="num">7/10</td><td class="num">+85</td><td><span class="badge b-blue"><span class="d"></span>Improving 3 lessons running</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--success-50);color:var(--success-700)">TD</span>Vũ Thành Đạt</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">12</td><td class="num">3/3</td><td class="num">10/10</td><td class="num">+150</td><td><span class="badge b-green"><span class="d"></span>Stood out today</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--success-50);color:var(--success-700)">NL</span>Đỗ Ngọc Linh</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">10</td><td class="num">3/3</td><td class="num">9/10</td><td class="num">+130</td><td><span class="badge b-green"><span class="d"></span>Stood out today</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--brand-50);color:var(--brand-700)">QH</span>Bùi Quang Huy</span></td><td><span class="badge b-orange"><span class="d"></span>8 min late</span></td><td class="num">5</td><td class="num">2/3</td><td class="num">8/10</td><td class="num">+95</td><td><span class="badge b-gray"><span class="d"></span>Steady</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--brand-50);color:var(--brand-700)">TT</span>Ngô Thanh Thảo</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">6</td><td class="num">3/3</td><td class="num">8/10</td><td class="num">+105</td><td><span class="badge b-gray"><span class="d"></span>Steady</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--brand-50);color:var(--brand-700)">DK</span>Hoàng Duy Khang</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">4</td><td class="num">2/3</td><td class="num">7/10</td><td class="num">+70</td><td><span class="badge b-gray"><span class="d"></span>Steady</span></td></tr>
+          <tr><td><span class="st"><span class="avatar" style="background:var(--brand-50);color:var(--brand-700)">YN</span>Đặng Yến Nhi</span></td><td><span class="badge b-gray"><span class="d"></span>On time</span></td><td class="num">8</td><td class="num">2/3</td><td class="num">9/10</td><td class="num">+110</td><td><span class="badge b-gray"><span class="d"></span>Steady</span></td></tr>
+        </tbody>
+      </table>
+      <div style="padding:14px 16px;font-size:13px;color:var(--text-tertiary)">The “worth checking in” label is a signal from this lesson’s data, not a judgement of what a student can do.</div>
+    </div>
+  </section>
+
+  <!-- SUGGESTIONS -->
+  <section>
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Getting ready for the next lesson</div>
+      <h2>Three things for the next lesson, taken from this lesson’s data</h2>
+    </div>
+    <div class="sugs">
+      <div class="sug reveal"><div class="n">1</div><h3>Go over question 2 by trying numbers</h3><p>Have the class build the table x = 1, 2, 3 for y = 3/x and fill it in. Ask one of the eight who missed it to read out the result, so everyone sees y coming down.</p><div class="from">Because 35% of the class missed question 2 the same way</div></div>
+      <div class="sug reveal" style="transition-delay:.07s"><div class="n">2</div><h3>Call on Gia Bảo and Khánh Vy at the start</h3><p>Neither spoke up once, yet both got 4–6 questions right in the game. Ask each of them one question at the start that they can definitely answer, so speaking up starts to feel normal.</p><div class="from">Because 2 of 23 stayed silent all lesson</div></div>
+      <div class="sug reveal" style="transition-delay:.14s"><div class="n">3</div><h3>Break up any lecture longer than 8 minutes</h3><p>Twelve straight minutes of lecture pulled focus down to 60. One 30-second question in the middle, like the quiz at minute 10, is enough to bring the class back.</p><div class="from">Because focus dropped in minutes 18–27</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>This report is generated automatically from the attendance, hand-raise, answer, quiz, game and bonus-point data of the lesson.</div>
+    <div class="eco" style="margin-top:6px">It has been saved to the Class 7A3 record on the National Digital School LMS.</div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- reveal on scroll ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  /* ---------- count-up ---------- */
+  function countUp(el){
+    var end = parseInt(el.getAttribute("data-count"),10), t0=null, dur=900;
+    if(reduced){ el.textContent=end; return; }
+    function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/dur,1); p=1-Math.pow(1-p,3);
+      el.textContent=Math.round(end*p); if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target);} });
+  },{threshold:.6});
+  document.querySelectorAll("[data-count]").forEach(function(el){ cio.observe(el); });
+
+  /* ---------- engagement area chart ---------- */
+  var eng=[55,62,68,72,74,76,75,77,78,79,86,91,93,90,88,79,76,74,71,68,64,61,60,61,63,65,66,68,84,89,91,93,94,95,95,93,92,90,88,86,82,80,79,78,77,75];
+  var phases=[{a:0,b:3,n:"Opening"},{a:3,b:10,n:"Lecture 1"},{a:10,b:15,n:"Quick quiz"},{a:15,b:28,n:"Lecture 2"},{a:28,b:40,n:"Review game"},{a:40,b:45,n:"Wrap-up"}];
+  var W=1020,H=300,P={t:34,r:14,b:34,l:40};
+  var iw=W-P.l-P.r, ih=H-P.t-P.b;
+  function X(m){return P.l+iw*m/45} function Y(v){return P.t+ih*(1-(v-40)/60)}
+  var s='<svg id="engSvg" viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto" role="img" aria-label="Class focus minute by minute, lowest 60 at minute 22, highest 95 at minute 34">';
+  phases.forEach(function(p,i){ if(i%2===1) s+='<rect x="'+X(p.a)+'" y="'+P.t+'" width="'+(X(p.b)-X(p.a))+'" height="'+ih+'" fill="#F9FAFB"/>'; });
+  [40,55,70,85,100].forEach(function(v){ s+='<line x1="'+P.l+'" x2="'+(W-P.r)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#EAECF0" stroke-width="1"/>'
+    +'<text x="'+(P.l-8)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-size="11" fill="#98A2B3">'+v+'</text>'; });
+  phases.forEach(function(p){ s+='<text x="'+((X(p.a)+X(p.b))/2)+'" y="'+(P.t-12)+'" text-anchor="middle" font-size="11" font-weight="600" fill="#667085">'+p.n+'</text>'
+    +'<line x1="'+X(p.b)+'" x2="'+X(p.b)+'" y1="'+P.t+'" y2="'+(P.t+ih)+'" stroke="#EAECF0" stroke-width="1" stroke-dasharray="2 3"/>'; });
+  [0,5,10,15,20,25,30,35,40,45].forEach(function(m){ s+='<text x="'+X(m)+'" y="'+(H-10)+'" text-anchor="middle" font-size="11" fill="#98A2B3">'+(m===0?"min 0":m)+'</text>'; });
+  var line="",area="M"+X(0)+" "+Y(eng[0]);
+  eng.forEach(function(v,m){ var c=X(m)+" "+Y(v); line+=(m?" L":"M")+c; area+=" L"+c; });
+  area+=" L"+X(45)+" "+(P.t+ih)+" L"+X(0)+" "+(P.t+ih)+" Z";
+  s+='<path d="'+area+'" fill="#DDEBFA" opacity=".5"/>';
+  s+='<path id="engLine" d="'+line+'" fill="none" stroke="#237BD3" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+  s+='<g><circle cx="'+X(34)+'" cy="'+Y(95)+'" r="5" fill="#237BD3" stroke="#fff" stroke-width="2"/>'
+    +'<rect x="'+(X(34)-58)+'" y="'+(Y(95)-34)+'" width="116" height="22" rx="11" fill="#041F4A"/>'
+    +'<text x="'+X(34)+'" y="'+(Y(95)-19)+'" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">Peak 95 · game</text></g>';
+  s+='<g><circle cx="'+X(22)+'" cy="'+Y(60)+'" r="5" fill="#E88616" stroke="#fff" stroke-width="2"/>'
+    +'<rect x="'+(X(22)-64)+'" y="'+(Y(60)+12)+'" width="128" height="22" rx="11" fill="#FFF5E7" stroke="#FFE9CC"/>'
+    +'<text x="'+X(22)+'" y="'+(Y(60)+27)+'" text-anchor="middle" font-size="11.5" font-weight="600" fill="#BA670C">Low 60 · long lecture</text></g>';
+  s+='<circle id="engHover" r="4.5" fill="#fff" stroke="#237BD3" stroke-width="2.5" opacity="0"/>';
+  s+='<rect id="engCatch" x="'+P.l+'" y="'+P.t+'" width="'+iw+'" height="'+ih+'" fill="transparent"/></svg>';
+  document.getElementById("engWrap").innerHTML=s;
+
+  var svgEl=document.getElementById("engSvg"), tip=document.getElementById("engTip"),
+      hov=document.getElementById("engHover"), box=document.querySelector(".chart-box");
+  function phaseOf(m){ for(var i=0;i<phases.length;i++) if(m>=phases[i].a&&m<=phases[i].b) return phases[i].n; return ""; }
+  document.getElementById("engCatch").addEventListener("mousemove",function(ev){
+    var r=svgEl.getBoundingClientRect(), mx=(ev.clientX-r.left)*(W/r.width);
+    var m=Math.max(0,Math.min(45,Math.round((mx-P.l)/iw*45)));
+    hov.setAttribute("cx",X(m)); hov.setAttribute("cy",Y(eng[m])); hov.setAttribute("opacity","1");
+    tip.innerHTML="<b>Minute "+m+"</b> · focus <b>"+eng[m]+"</b>/100<br>"+phaseOf(m);
+    var host=this.closest(".chart-box").getBoundingClientRect();
+    tip.style.left=Math.min(ev.clientX-host.left+14,host.width-170)+"px";
+    tip.style.top=(ev.clientY-host.top-14)+"px"; tip.classList.add("show");
+  });
+  document.getElementById("engCatch").addEventListener("mouseleave",function(){ tip.classList.remove("show"); hov.setAttribute("opacity","0"); });
+
+  var lineEl=document.getElementById("engLine"), len=lineEl.getTotalLength();
+  if(!reduced){ lineEl.style.strokeDasharray=len; lineEl.style.strokeDashoffset=len;
+    new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){
+      lineEl.style.transition="stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)"; lineEl.style.strokeDashoffset=0; o.disconnect(); }});},{threshold:.4}).observe(svgEl);
+  }
+  var tb="<tr><th>Range</th><th>Activity</th><th>Avg focus</th></tr>";
+  phases.forEach(function(p){ var seg=eng.slice(p.a,p.b+1), avg=Math.round(seg.reduce(function(a,b){return a+b},0)/seg.length);
+    tb+="<tr><td>Min "+p.a+"–"+p.b+"</td><td>"+p.n+"</td><td>"+avg+"/100</td></tr>"; });
+  document.getElementById("engTable").innerHTML=tb;
+
+  /* ---------- donut ---------- */
+  var dd=[{v:96,c:"#237BD3",l:"Answers & chat"},{v:76,c:"#E88616",l:"Quiz & game"},{v:42,c:"#0E9384",l:"Hands raised"}];
+  var tot=214,R=70,CX=95,CY=95,CIRC=2*Math.PI*R, gap=3, acc=0, ds='';
+  dd.forEach(function(seg){ var frac=seg.v/tot, arc=frac*CIRC-gap;
+    ds+='<circle class="dseg" r="'+R+'" cx="'+CX+'" cy="'+CY+'" fill="none" stroke="'+seg.c+'" stroke-width="26" '
+      +'stroke-dasharray="0 '+CIRC+'" data-arc="'+arc+'" data-off="'+(-acc*CIRC-gap/2)+'" transform="rotate(-90 '+CX+' '+CY+')"/>';
+    acc+=frac; });
+  ds+='<text x="'+CX+'" y="'+(CY-4)+'" text-anchor="middle" font-size="30" font-weight="800" fill="#101828" class="num" id="donutN">0</text>'
+    +'<text x="'+CX+'" y="'+(CY+18)+'" text-anchor="middle" font-size="12" fill="#667085">interactions</text>';
+  var donut=document.getElementById("donut"); donut.innerHTML=ds;
+  new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){
+    donut.querySelectorAll(".dseg").forEach(function(c,i){
+      var arc=+c.getAttribute("data-arc"), off=+c.getAttribute("data-off");
+      c.style.transition=reduced?"none":"stroke-dasharray 1s cubic-bezier(.2,.7,.2,1) "+(i*0.12)+"s";
+      c.setAttribute("stroke-dashoffset",off);
+      requestAnimationFrame(function(){ c.setAttribute("stroke-dasharray",arc+" "+(CIRC-arc)); });
+    });
+    var n=document.getElementById("donutN"),t0=null;
+    if(reduced){n.textContent=tot;} else (function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/1000,1); p=1-Math.pow(1-p,3);
+      n.textContent=Math.round(tot*p); if(p<1)requestAnimationFrame(step); })(performance.now());
+    o.disconnect(); }});},{threshold:.5}).observe(donut);
+
+  /* ---------- histogram ---------- */
+  var hd=[{l:"0 times",v:2},{l:"1–3 times",v:7},{l:"4–6 times",v:9},{l:"7+ times",v:5}];
+  var HW=460,HH=210,HP={t:26,r:10,b:30,l:10}, hiw=HW-HP.l-HP.r, hih=HH-HP.t-HP.b, bw=hiw/hd.length;
+  var hs='<svg id="histSvg" viewBox="0 0 '+HW+' '+HH+'" style="width:100%;height:auto" role="img" aria-label="Distribution: 2 students spoke 0 times, 7 students 1 to 3, 9 students 4 to 6, 5 students 7 or more">';
+  hd.forEach(function(d,i){
+    var bh=hih*d.v/10, x=HP.l+i*bw+bw*0.18, w=bw*0.64, y=HP.t+hih-bh;
+    hs+='<rect class="hbar" x="'+x+'" y="'+y+'" width="'+w+'" height="'+bh+'" rx="5" fill="'+(i===0?"#E88616":"#237BD3")+'" '
+      +'style="transform-box:fill-box;transform-origin:bottom;transform:scaleY(0)"/>'
+      +'<text x="'+(x+w/2)+'" y="'+(y-8)+'" text-anchor="middle" font-size="13" font-weight="700" fill="#101828" class="num">'+d.v+' students</text>'
+      +'<text x="'+(x+w/2)+'" y="'+(HH-8)+'" text-anchor="middle" font-size="12" fill="#667085">'+d.l+'</text>';
+  });
+  hs+='</svg>';
+  document.getElementById("histWrap").innerHTML=hs;
+  var histSvg=document.getElementById("histSvg");
+  new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){
+    histSvg.querySelectorAll(".hbar").forEach(function(b,i){
+      b.style.transition=reduced?"none":"transform .7s cubic-bezier(.2,.7,.2,1) "+(i*0.08)+"s";
+      b.style.transform="scaleY(1)"; });
+    o.disconnect(); }});},{threshold:.5}).observe(histSvg);
+})();
+</script>

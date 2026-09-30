@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Báo cáo tiết Tiếng Anh — dành cho giáo viên</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --navy: #1E40AF;
+      --navy-deep: #1E3A8A;
+      --blue: #3B82F6;
+      --blue-soft: #EFF4FF;
+      --blue-line: #DBEAFE;
+      --amber: #B45309;
+      --amber-bright: #D97706;
+      --amber-soft: #FFF7E8;
+      --amber-line: #FDE9C8;
+      --ok: #15803D;
+      --ok-soft: #F0FDF4;
+      --ok-line: #BBF7D0;
+      --bad: #DC2626;
+      --bad-soft: #FEF2F2;
+      --bad-line: #FECACA;
+      --ink: #16233F;
+      --body: #3D4B63;
+      --muted: #64748B;
+      --faint: #94A3B8;
+      --line: #E3E8F0;
+      --line-soft: #EEF2F7;
+      --bg: #F7F9FC;
+      --paper: #FFFFFF;
+      --serif: "Lora", Georgia, "Times New Roman", serif;
+      --sans: "Public Sans", "Segoe UI", -apple-system, Arial, sans-serif;
+      --r: 14px;
+      --sh: 0 1px 2px rgba(22, 35, 63, .05), 0 10px 28px -18px rgba(30, 64, 175, .18);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--sans);
+      font-size: 15.5px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      color: var(--navy-deep);
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -.01em
+    }
+
+    h4 {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    p {
+      margin: 0
+    }
+
+    .wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 26px
+    }
+
+    svg.ic {
+      width: 19px;
+      height: 19px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    button {
+      font-family: var(--sans)
+    }
+
+    button:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 2px;
+      border-radius: 8px
+    }
+
+    .num {
+      font-variant-numeric: tabular-nums
+    }
+
+    /* ===== MASTHEAD ===== */
+    .topline {
+      height: 5px;
+      background: var(--navy)
+    }
+
+    header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 26px 0 0
+    }
+
+    .mast {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .mast .brand {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--muted)
+    }
+
+    .stamp {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--amber);
+      border: 1.5px solid var(--amber-line);
+      background: var(--amber-soft);
+      padding: 7px 14px;
+      border-radius: 4px
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 0;
+      font-size: 13.5px;
+      color: var(--muted);
+      margin: 20px 0 14px
+    }
+
+    .meta span+span::before {
+      content: "·";
+      margin: 0 10px;
+      color: var(--faint)
+    }
+
+    header h1 {
+      font-size: clamp(27px, 3.4vw, 40px);
+      max-width: 21em
+    }
+
+    header .sub {
+      font-size: 16.5px;
+      color: var(--body);
+      max-width: 46em;
+      margin: 14px 0 30px
+    }
+
+    /* ===== KPI STRIP ===== */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-top: -1px;
+      box-shadow: var(--sh);
+      position: relative;
+      z-index: 2;
+      transform: translateY(34px)
+    }
+
+    .kpi {
+      padding: 22px 24px;
+      border-left: 1px solid var(--line)
+    }
+
+    .kpi:first-child {
+      border-left: 0
+    }
+
+    .kpi .big {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--navy-deep);
+      line-height: 1;
+      letter-spacing: -.02em
+    }
+
+    .kpi .big small {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--faint)
+    }
+
+    .kpi .lbl {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 8px
+    }
+
+    .kpi .note {
+      font-size: 12.8px;
+      margin-top: 9px;
+      font-weight: 600
+    }
+
+    .n-ok {
+      color: var(--ok)
+    }
+
+    .n-warn {
+      color: var(--amber)
+    }
+
+    .n-mut {
+      color: var(--faint);
+      font-weight: 500
+    }
+
+    main {
+      padding-top: 34px
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 54px 0 0
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      color: var(--amber);
+      margin-bottom: 10px
+    }
+
+    .sec-head {
+      margin-bottom: 20px;
+      max-width: 56em
+    }
+
+    .sec-head h2 {
+      font-size: 26px;
+      margin-bottom: 9px
+    }
+
+    .sec-head p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 44em
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--sh)
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 20px
+    }
+
+    .grid-eq {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s cubic-bezier(.2, .8, .2, 1), transform .7s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .rv.on {
+      opacity: 1;
+      transform: none
+    }
+
+    .note-box {
+      margin-top: 18px;
+      padding: 15px 18px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-line);
+      font-size: 14.5px;
+      color: #1E3A8A
+    }
+
+    .note-amber {
+      background: var(--amber-soft);
+      border-color: var(--amber-line);
+      color: #7C4A03
+    }
+
+    /* ===== TIMELINE ===== */
+    .tl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 8px
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: var(--muted)
+    }
+
+    .legend i {
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle
+    }
+
+    .playbtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 9px;
+      font-size: 13.5px;
+      font-weight: 700;
+      transition: background .2s
+    }
+
+    .playbtn:hover {
+      background: var(--navy-deep)
+    }
+
+    .tl-wrap {
+      position: relative
+    }
+
+    #tlSvg {
+      width: 100%;
+      height: 270px;
+      display: block;
+      overflow: visible
+    }
+
+    .tip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -120%);
+      background: var(--ink);
+      color: #fff;
+      padding: 9px 12px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      white-space: nowrap;
+      transition: opacity .15s;
+      box-shadow: 0 8px 24px -8px rgba(22, 35, 63, .5);
+      z-index: 9
+    }
+
+    .tip b {
+      color: #93C5FD
+    }
+
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-top: 10px
+    }
+
+    .ph {
+      padding: 9px 6px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--body);
+      background: var(--line-soft);
+      border: 1px solid transparent;
+      transition: .2s;
+      cursor: default
+    }
+
+    .ph:hover,
+    .ph.hot {
+      background: var(--blue-soft);
+      border-color: var(--blue-line);
+      color: var(--navy)
+    }
+
+    .ph span {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--faint);
+      margin-top: 2px
+    }
+
+    /* ===== QUADRANT ===== */
+    #quadSvg {
+      width: 100%;
+      height: 400px;
+      display: block
+    }
+
+    .qd {
+      cursor: pointer;
+      transition: r .18s, opacity .18s
+    }
+
+    .quad-note {
+      font-size: 12.5px;
+      color: var(--faint);
+      margin-top: 8px;
+      text-align: center
+    }
+
+    .detail {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 24px;
+      position: sticky;
+      top: 20px;
+      box-shadow: var(--sh)
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 19px;
+      color: #fff;
+      background: var(--navy)
+    }
+
+    .d-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line)
+    }
+
+    .d-row:last-of-type {
+      border-bottom: 0
+    }
+
+    .d-row span {
+      font-size: 13.5px;
+      color: var(--muted)
+    }
+
+    .d-row b {
+      font-size: 14.5px;
+      color: var(--ink)
+    }
+
+    .bar {
+      height: 7px;
+      background: var(--line-soft);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 7px
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      border-radius: 99px;
+      width: 0;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 11px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    /* ===== ITEM ANALYSIS ===== */
+    .q-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .q-item {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      transition: .2s;
+      overflow: hidden
+    }
+
+    .q-item:hover {
+      border-color: var(--blue)
+    }
+
+    .q-item.open {
+      border-color: var(--navy);
+      background: #FDFEFF
+    }
+
+    .q-head {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      padding: 15px 18px;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      text-align: left
+    }
+
+    .q-num {
+      width: 27px;
+      height: 27px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      font-size: 12.5px;
+      font-weight: 800;
+      background: var(--navy);
+      color: #fff;
+      flex: 0 0 auto
+    }
+
+    .q-txt {
+      flex: 1;
+      font-size: 14.8px;
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .q-txt em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--navy)
+    }
+
+    .q-pct {
+      font-size: 16.5px;
+      font-weight: 800;
+      flex: 0 0 auto
+    }
+
+    .q-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .42s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .q-item.open .q-body {
+      max-height: 460px
+    }
+
+    .q-in {
+      padding: 2px 18px 18px
+    }
+
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: 11px;
+      font-size: 13.8px
+    }
+
+    .opt-key {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: grid;
+      place-items: center;
+      font-size: 11.5px;
+      font-weight: 800;
+      flex: 0 0 auto;
+      background: var(--line-soft);
+      color: var(--muted)
+    }
+
+    .opt.correct .opt-key {
+      background: var(--ok);
+      color: #fff
+    }
+
+    .opt.trap .opt-key {
+      background: var(--amber-bright);
+      color: #fff
+    }
+
+    .opt-txt {
+      width: 140px;
+      flex: 0 0 auto;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink)
+    }
+
+    .opt-bar {
+      flex: 1;
+      height: 20px;
+      background: var(--line-soft);
+      border-radius: 6px;
+      overflow: hidden
+    }
+
+    .opt-bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 6px;
+      transition: width .9s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .opt-n {
+      width: 80px;
+      text-align: right;
+      font-size: 12.5px;
+      color: var(--muted);
+      flex: 0 0 auto
+    }
+
+    .q-note {
+      margin-top: 14px;
+      padding: 13px 16px;
+      border-radius: 9px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-line);
+      font-size: 13.8px;
+      color: #7C4A03
+    }
+
+    /* ===== EQUITY ===== */
+    .eq-wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 28px;
+      align-items: center
+    }
+
+    .eq-bars {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 130px
+    }
+
+    .eq-bars i {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      height: 0;
+      transition: height .9s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .eq-axis {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--faint);
+      margin-top: 9px
+    }
+
+    .eq-num {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--navy-deep);
+      letter-spacing: -.02em;
+      line-height: 1
+    }
+
+    /* ===== WATCHLIST ===== */
+    .wl {
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .wl-item {
+      padding: 15px 17px 15px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      position: relative;
+      transition: .22s
+    }
+
+    .wl-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3.5px;
+      border-radius: 99px;
+      background: var(--c)
+    }
+
+    .wl-item:hover {
+      transform: translateX(4px);
+      border-color: var(--blue-line)
+    }
+
+    .wl-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .wl-why {
+      font-size: 13.8px;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    .wl-do {
+      font-size: 13.8px;
+      color: var(--navy);
+      margin-top: 7px;
+      font-weight: 600
+    }
+
+    /* ===== SERIES ===== */
+    #serSvg {
+      width: 100%;
+      height: 300px;
+      display: block;
+      overflow: visible
+    }
+
+    .ser-tabs {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 16px;
+      flex-wrap: wrap
+    }
+
+    .tab {
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .tab:hover {
+      border-color: var(--blue);
+      color: var(--navy)
+    }
+
+    .tab.on {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff
+    }
+
+    /* ===== NEXT ===== */
+    .next {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px
+    }
+
+    .nx {
+      padding: 24px;
+      border-radius: var(--r);
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--sh);
+      transition: .25s
+    }
+
+    .nx:hover {
+      transform: translateY(-4px)
+    }
+
+    .nx .no {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 600;
+      font-size: 30px;
+      color: var(--amber-bright);
+      line-height: 1
+    }
+
+    .nx h4 {
+      font-size: 16px;
+      margin: 10px 0 8px
+    }
+
+    .nx p {
+      font-size: 14px;
+      color: var(--muted)
+    }
+
+    .nx .mins {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--blue-soft);
+      padding: 4px 11px;
+      border-radius: 6px
+    }
+
+    footer {
+      margin-top: 64px;
+      padding: 30px 0 46px;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font-size: 13px
+    }
+
+    .foot-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--body);
+      padding: 10px 17px;
+      border-radius: 9px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--navy);
+      color: var(--navy)
+    }
+
+    @media(max-width:980px) {
+      .kpis {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .kpi:nth-child(3) {
+        border-left: 0
+      }
+
+      .kpi {
+        border-top: 1px solid var(--line)
+      }
+
+      .kpi:nth-child(-n+2) {
+        border-top: 0
+      }
+
+      .grid-2,
+      .grid-eq,
+      .eq-wrap {
+        grid-template-columns: 1fr
+      }
+
+      .next {
+        grid-template-columns: 1fr
+      }
+
+      .phases {
+        grid-template-columns: repeat(4, 1fr)
+      }
+
+      .detail {
+        position: static
+      }
+
+      .opt-txt {
+        width: 104px
+      }
+    }
+
+    @media(max-width:560px) {
+      .kpis {
+        grid-template-columns: 1fr
+      }
+
+      .kpi {
+        border-left: 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+
+      .rv {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="wrap">
+      <div class="mast">
+        <div class="brand">TRƯỜNG HỌC SỐ · SMART CLASS</div>
+        <div class="stamp">BÁO CÁO TIẾT HỌC</div>
+      </div>
+      <div class="meta">
+        <span>Thứ Ba, 25/08/2026</span><span>Tiết 2 (08:35–09:20)</span><span>Lớp 8A2</span><span>Tiếng Anh — Ôn tập các
+          thì</span><span>GV Nguyễn Thu Hà</span>
+      </div>
+      <h1>Ba thì đầu cả lớp làm khá chắc. Riêng hiện tại hoàn thành, 19 em vẫn chia như quá khứ đơn.</h1>
+      <p class="sub">Trang này gom lại những gì 34 em đã làm trong 45 phút — em nào nói, em nào im, câu nào sai nhiều và
+        sai vì đâu — để cô đỡ phải đoán khi soạn tiết thứ Năm.</p>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="big num"><span class="cu" data-to="34">0</span><small>/36</small></div>
+          <div class="lbl">Học sinh có mặt</div>
+          <div class="note n-mut">Gia Hân ốm, Nhật Nam đi thi điền kinh</div>
+        </div>
+        <div class="kpi">
+          <div class="big num"><span class="cu" data-to="27">0</span><small>/34</small></div>
+          <div class="lbl">Em đã nói tiếng Anh ít nhất một câu</div>
+          <div class="note n-ok">Tiết trước là 21 em</div>
+        </div>
+        <div class="kpi">
+          <div class="big num"><span class="cu" data-to="71">0</span><small>%</small></div>
+          <div class="lbl">Tỉ lệ trả lời đúng cả tiết</div>
+          <div class="note n-ok">Bài Câu bị động tuần trước: 66%</div>
+        </div>
+        <div class="kpi">
+          <div class="big num"><span class="cu" data-to="12">0</span><small>giây</small></div>
+          <div class="lbl">Thời gian nghĩ trước khi chọn</div>
+          <div class="note n-warn">Câu về hoàn thành: 19 giây, gấp đôi câu hiện tại đơn</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 01 TIMELINE -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">01 · NHỊP TIẾT HỌC</div>
+        <h2>45 phút vừa rồi trôi thế nào</h2>
+        <p>Đường xanh là tỉ lệ học sinh đang theo bài, tính theo từng phút từ lượt bấm và lượt nói. Rê chuột vào để xem
+          lúc đó lớp đang làm gì.</p>
+      </div>
+      <div class="card rv">
+        <div class="tl-top">
+          <div class="legend">
+            <span><i style="background:var(--navy)"></i>Mức theo bài</span>
+            <span><i style="background:var(--amber-bright)"></i>Đoạn chùng xuống</span>
+            <span><i style="background:#fff;border:2px solid var(--amber-bright);border-radius:50%"></i>Mốc đáng
+              nhớ</span>
+          </div>
+          <button class="playbtn" id="replayBtn">
+            <svg class="ic" viewBox="0 0 24 24" style="width:15px;height:15px">
+              <path d="m6 4 14 8-14 8Z" />
+            </svg>
+            Phát lại tiết học
+          </button>
+        </div>
+        <div class="tl-wrap">
+          <svg id="tlSvg" viewBox="0 0 1000 260" preserveAspectRatio="none"></svg>
+          <div class="tip" id="tlTip"></div>
+        </div>
+        <div class="phases" id="phases"></div>
+        <div class="note-box">
+          Chỗ trũng rơi đúng đoạn giảng lại lý thuyết, phút 18–26. Các em vừa chơi quiz xong, phải ngồi nghe liền tám
+          phút nên tụt cũng dễ hiểu. Tiết sau có thể chỉ chữa nhanh ba câu sai nhiều nhất rồi vào trò ghép cặp luôn,
+          phần quy tắc dồn về bảng chốt cuối giờ. Trò <i>Have you ever…?</i> kéo lớp lên 93%, cao nhất từ đầu tháng.
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 QUADRANT -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">02 · BẢN ĐỒ LỚP</div>
+        <h2>Ai ổn, ai chỉ đang im lặng, ai cần kèm thêm</h2>
+        <p>Trục ngang là mức tham gia (nói và bấm), trục dọc là mức nắm bài. Em ít nói mà làm đúng thì chưa đáng lo; em
+          vừa im vừa sai mới là em dễ bị trôi qua nhất. Bấm vào một chấm để xem chi tiết.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card rv">
+          <svg id="quadSvg" viewBox="0 0 620 400"></svg>
+          <p class="quad-note">34 em có mặt · chấm càng to là trả lời càng nhiều câu</p>
+        </div>
+        <div class="detail rv" id="detail" style="transition-delay:.1s"></div>
+      </div>
+    </section>
+
+    <!-- 03 ITEM ANALYSIS -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">03 · TỪNG CÂU HỎI</div>
+        <h2>Các em sai ở đâu, và vì đâu</h2>
+        <p>Ở mỗi câu, phần đông chọn nhầm vào cùng một phương án. Nhìn vào phương án đó sẽ biết các em đang hiểu lệch
+          chỗ nào. Bấm vào từng câu để mở.</p>
+      </div>
+      <div class="card rv">
+        <div class="q-list" id="qList"></div>
+      </div>
+    </section>
+
+    <!-- 04 EQUITY -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">04 · TIẾNG NÓI TRONG LỚP</div>
+        <h2>Lớp sôi nổi, nhưng có đều không</h2>
+        <p>Với môn Tiếng Anh, em nào chịu mở miệng quan trọng ngang em nào làm đúng. Cột dưới xếp 34 em theo số lượt
+          nói, từ nhiều đến ít.</p>
+      </div>
+      <div class="card rv">
+        <div class="eq-wrap">
+          <div>
+            <div class="eq-bars" id="eqBars"></div>
+            <div class="eq-axis"><span>Nói nhiều nhất</span><span>Chưa nói lần nào</span></div>
+          </div>
+          <div>
+            <div class="eq-num num"><span class="cu" data-to="40">0</span>%</div>
+            <p style="font-size:14.5px;color:var(--muted);margin-top:9px">
+              lượt nói cả tiết thuộc về 5 em quen thuộc. Các tiết trước con số này quanh 55%, nên hôm nay tiếng nói đã
+              chia đều hơn hẳn.
+            </p>
+            <div class="note-box note-amber" style="margin-top:16px">
+              Còn 7 em chưa nói câu tiếng Anh nào. Bốn em trong đó bài vẫn làm tốt — nhiều khả năng ngại phát âm chứ
+              không phải hổng bài. Trò ghép cặp hôm nay kéo được 6 em lần đầu chịu nói; cách này đáng giữ.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 + 06 -->
+    <section>
+      <div class="grid-eq">
+        <div>
+          <div class="sec-head rv">
+            <div class="eyebrow">05 · NĂM EM NÊN HỎI THĂM</div>
+            <h2>Trước khi vào tiết thứ Năm</h2>
+            <p>Xếp theo mức cần để mắt, không phải theo điểm.</p>
+          </div>
+          <div class="wl rv" id="watch"></div>
+        </div>
+        <div>
+          <div class="sec-head rv">
+            <div class="eyebrow">06 · SÁU TIẾT GẦN NHẤT</div>
+            <h2>Lớp đang đi lên hay đi ngang</h2>
+            <p>Một tiết tốt chưa nói lên gì; xu hướng mới đáng tin.</p>
+          </div>
+          <div class="card rv" style="transition-delay:.1s">
+            <div class="ser-tabs" id="serTabs"></div>
+            <svg id="serSvg" viewBox="0 0 560 280"></svg>
+            <div class="note-box" id="serNote" style="margin-top:14px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 NEXT -->
+    <section>
+      <div class="sec-head rv">
+        <div class="eyebrow">07 · TRƯỚC TIẾT THỨ NĂM 27/08</div>
+        <h2>Ba việc đáng làm nhất, gói trong 15 phút đầu giờ</h2>
+      </div>
+      <div class="next">
+        <div class="nx rv">
+          <div class="no">1.</div>
+          <h4>Dành hẳn 10 phút cho "saw hay have seen"</h4>
+          <p>Treo hai câu lên bảng: <i>I saw this film yesterday</i> và <i>I have seen this film three times</i>. Cho
+            lớp tự tìm điểm khác nhau trước, cô chốt sau. 19 em đang vướng đúng chỗ này.</p>
+          <span class="mins">≈ 10 phút</span>
+        </div>
+        <div class="nx rv" style="transition-delay:.08s">
+          <div class="no">2.</div>
+          <h4>Gọi 7 em chưa nói</h4>
+          <p>Chuẩn bị sẵn 7 câu đọc mẫu thật dễ, mỗi em một câu ở phần khởi động. Nói được một lần trót lọt thì lần sau
+            đỡ ngại hơn nhiều.</p>
+          <span class="mins">≈ 5 phút</span>
+        </div>
+        <div class="nx rv" style="transition-delay:.16s">
+          <div class="no">3.</div>
+          <h4>Giữ nguyên trò ghép cặp</h4>
+          <p>Phút chơi <i>Have you ever…?</i> là lúc lớp nói nhiều nhất từ đầu học kỳ. Cách này đang chạy tốt, không cần
+            đổi gì.</p>
+          <span class="mins">Không tốn thêm phút nào</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot-row">
+        <div>Số liệu lấy từ lượt bấm, lượt nói và hai vòng quiz trong tiết · Trường học số — Smart Class<br />Bản demo,
+          dữ liệu mô phỏng theo cấu trúc dữ liệu thật của hệ thống.</div>
+        <div style="display:flex;gap:9px">
+          <button class="btn-ghost">Gửi vào sổ báo bài</button>
+          <button class="btn-ghost">Tải bản PDF</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const NS = "http://www.w3.org/2000/svg";
+    const el = (t, a = {}) => { const n = document.createElementNS(NS, t); for (const k in a) n.setAttribute(k, a[k]); return n };
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const C = { navy: '#1E40AF', navyDeep: '#1E3A8A', blue: '#3B82F6', blueL: '#93C5FD', blueXL: '#DBEAFE', amber: '#D97706', ok: '#15803D', bad: '#DC2626' };
+
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target) } }), { threshold: .12 });
+    $$('.rv').forEach(n => io.observe(n));
+
+    const cio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; cio.unobserve(e.target);
+      const n = e.target, to = +n.dataset.to;
+      if (RM) { n.textContent = to; return }
+      const t0 = performance.now(), d = 1100;
+      const st = t => { const p = Math.min(1, (t - t0) / d); n.textContent = Math.round(to * ease(p)); if (p < 1) requestAnimationFrame(st) };
+      requestAnimationFrame(st);
+    }), { threshold: .4 });
+    $$('.cu').forEach(n => cio.observe(n));
+
+    /* ============ 01 TIMELINE ============ */
+    const ENG = [55, 68, 80, 85, 83, 78, 74, 72, 70, 68, 66, 66, 78, 86, 90, 88, 86, 84, 72, 62, 54, 50, 48, 50, 52, 56, 74, 85, 90, 93, 92, 90, 88, 86, 85, 84, 83, 84, 85, 83, 80, 74, 70, 66, 62];
+    const PHASES = [
+      { a: 0, b: 5, n: "Khởi động", d: "video + hỏi nhanh" },
+      { a: 5, b: 12, n: "Ôn công thức", d: "4 thì" },
+      { a: 12, b: 18, n: "Quiz vòng 1", d: "chia động từ" },
+      { a: 18, b: 26, n: "Chữa và giảng", d: "hoàn thành ↔ quá khứ" },
+      { a: 26, b: 33, n: "Ghép cặp nói", d: "Have you ever…?" },
+      { a: 33, b: 41, n: "Quiz vòng 2", d: "chọn thì theo dấu hiệu" },
+      { a: 41, b: 45, n: "Chốt bài", d: "bảng dấu hiệu" }
+    ];
+    const MOMENT = { 3: "Cả lớp hát theo video khởi động", 13: "Quiz vòng 1 — 30/34 em trả lời", 19: "Cô giảng lại hoàn thành và quá khứ đơn", 22: "Điểm trũng sâu nhất: còn 48% theo bài", 27: "Trò ghép cặp Have you ever…? bắt đầu", 30: "Đỉnh cả tiết — 93% đang nói hoặc nghe bạn nói", 36: "Quiz vòng 2, lớp giữ nhịp tốt", 42: "Chốt bảng dấu hiệu, giao bài về nhà" };
+    const W = 1000, H = 260, PT = 18, PB = 34, PL = 8, PR = 8;
+    const x = i => PL + i * (W - PL - PR) / 44, y = v => PT + (100 - v) / 100 * (H - PT - PB);
+    (function () {
+      const s = $('#tlSvg');
+      const g = el('linearGradient', { id: 'ag', x1: 0, y1: 0, x2: 0, y2: 1 });
+      g.append(el('stop', { offset: '0%', 'stop-color': C.navy, 'stop-opacity': .22 }), el('stop', { offset: '100%', 'stop-color': C.navy, 'stop-opacity': 0 }));
+      const defs = el('defs'); defs.append(g); s.append(defs);
+      [25, 50, 75, 100].forEach(v => {
+        s.append(el('line', { x1: PL, y1: y(v), x2: W - PR, y2: y(v), stroke: '#EEF2F7', 'stroke-width': 1 }));
+        const t = el('text', { x: PL + 2, y: y(v) - 5, fill: '#B6C2D4', 'font-size': 10 }); t.textContent = v + '%'; s.append(t);
+      });
+      s.append(el('rect', { x: x(18), y: PT, width: x(26) - x(18), height: H - PT - PB, fill: '#FFF7E8' }));
+      const dl = el('text', { x: (x(18) + x(26)) / 2, y: PT + 15, fill: '#B45309', 'font-size': 10.5, 'font-weight': 700, 'text-anchor': 'middle' });
+      dl.textContent = 'lớp chùng xuống'; s.append(dl);
+      const line = ENG.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+      const area = el('path', { d: line + ` L${x(44)},${y(0)} L${x(0)},${y(0)} Z`, fill: 'url(#ag)', opacity: 0 });
+      s.append(area);
+      const p = el('path', { d: line, fill: 'none', stroke: C.navy, 'stroke-width': 2.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+      s.append(p);
+      const L = p.getTotalLength();
+      if (!RM) { p.style.strokeDasharray = L; p.style.strokeDashoffset = L; }
+      new IntersectionObserver((e, o) => {
+        if (e[0].isIntersecting) {
+          p.style.transition = 'stroke-dashoffset 2s cubic-bezier(.3,.8,.3,1)'; p.style.strokeDashoffset = 0;
+          area.style.transition = 'opacity .9s .7s'; area.style.opacity = 1; o.disconnect()
+        }
+      }, { threshold: .3 }).observe(s);
+      Object.keys(MOMENT).forEach(k => {
+        const i = +k;
+        s.append(el('circle', { cx: x(i), cy: y(ENG[i]), r: 5, fill: '#fff', stroke: C.amber, 'stroke-width': 2.6 }));
+      });
+      [0, 10, 20, 30, 40, 44].forEach(i => {
+        const t = el('text', { x: x(i), y: H - 12, fill: '#94A3B8', 'font-size': 10.5, 'text-anchor': 'middle' });
+        t.textContent = (i === 44 ? 45 : i) + "'"; s.append(t);
+      });
+      s.append(el('line', { id: 'playhead', x1: 0, y1: PT, x2: 0, y2: H - PB, stroke: '#16233F', 'stroke-width': 1.6, 'stroke-dasharray': '4 4', opacity: 0 }));
+      s.append(el('circle', { id: 'playdot', r: 6, fill: '#16233F', opacity: 0 }));
+    })();
+    const tlSvg = $('#tlSvg'), tip = $('#tlTip');
+    tlSvg.addEventListener('mousemove', e => {
+      const r = tlSvg.getBoundingClientRect();
+      const i = Math.max(0, Math.min(44, Math.round((e.clientX - r.left) / r.width * 44)));
+      const ph = PHASES.find(p => i >= p.a && i < p.b) || PHASES[6];
+      tip.style.opacity = 1; tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (y(ENG[i]) / H * r.height) + 'px';
+      tip.innerHTML = `Phút ${i} · <b>${ENG[i]}%</b> đang theo bài<br/>${MOMENT[i] || ph.n + ' — ' + ph.d}`;
+      $$('#phases .ph').forEach((n, k) => n.classList.toggle('hot', PHASES[k] === ph));
+    });
+    tlSvg.addEventListener('mouseleave', () => { tip.style.opacity = 0; $$('#phases .ph').forEach(n => n.classList.remove('hot')) });
+    $('#phases').innerHTML = PHASES.map(p => `<div class="ph">${p.n}<span>${p.a}–${p.b} phút</span></div>`).join('');
+    $('#replayBtn').addEventListener('click', () => {
+      const head = $('#playhead'), dot = $('#playdot'); head.setAttribute('opacity', .5); dot.setAttribute('opacity', 1);
+      const t0 = performance.now(), d = RM ? 1 : 4200;
+      const run = t => {
+        const p = Math.min(1, (t - t0) / d), i = p * 44, i0 = Math.floor(i);
+        const v = ENG[i0] + (ENG[Math.min(44, i0 + 1)] - ENG[i0]) * (i - i0);
+        head.setAttribute('x1', x(i)); head.setAttribute('x2', x(i));
+        dot.setAttribute('cx', x(i)); dot.setAttribute('cy', y(v));
+        const ph = PHASES.find(q => i >= q.a && i < q.b) || PHASES[6];
+        $$('#phases .ph').forEach((n, k) => n.classList.toggle('hot', PHASES[k] === ph));
+        if (p < 1) requestAnimationFrame(run); else setTimeout(() => { head.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); $$('#phases .ph').forEach(n => n.classList.remove('hot')) }, 700);
+      };
+      requestAnimationFrame(run);
+    });
+
+    /* ============ 02 QUADRANT ============ */
+    const NAMES = ["Trần Gia Minh", "Lê Bảo Ngọc", "Nguyễn Hải Đăng", "Phạm Thu Trang", "Vũ Minh Khôi", "Đỗ Hà My", "Bùi Quốc Anh", "Ngô Khánh Linh", "Hoàng Tuấn Kiệt", "Đặng Phương Thảo", "Lý Gia Bảo", "Trịnh Nhật Hạ", "Cao Đức Duy", "Mai Ngọc Ánh", "Phan Trung Hiếu", "Tạ Thùy Dương", "Dương Anh Tú", "Hồ Diệu Linh", "Chu Minh Quân", "Lâm Bích Ngọc", "Tô Hoàng Long", "Đinh Thanh Vân", "Võ Đăng Khoa", "Kiều Mỹ Hạnh", "Nguyễn Tất Thành", "Lê Quỳnh Chi", "Trần Bảo Sơn", "Phạm Diễm Quỳnh", "Hà Việt Hưng", "Ung Thảo Nhi", "Bạch Công Minh", "Đoàn Yến Nhi", "Tăng Chí Dũng", "Nghiêm Lan Anh"];
+    const RND = (s => () => ((s = s * 16807 % 2147483647) / 2147483647))(7);
+    const STU = NAMES.map((n, i) => {
+      const base = RND();
+      let part = Math.round(12 + base * 84), mas = Math.round(Math.max(8, Math.min(97, part * 0.55 + 18 + RND() * 42)));
+      if (i % 9 === 3) { part = Math.round(8 + RND() * 22); mas = Math.round(70 + RND() * 25) }
+      if (i % 11 === 5) { part = Math.round(10 + RND() * 22); mas = Math.round(14 + RND() * 26) }
+      return { n, part, mas, ans: Math.round(mas / 12) + 2, speak: Math.round(part / 16), time: Math.round(22 - mas * 0.11), focus: Math.round(50 + mas * 0.42) };
+    });
+    STU[0] = { n: "Trần Gia Minh", part: 76, mas: 80, ans: 8, speak: 4, time: 11, focus: 87 };
+    const QW = 620, QH = 400, QM = { t: 22, r: 20, b: 44, l: 52 };
+    const qx = v => QM.l + v / 100 * (QW - QM.l - QM.r), qy = v => QM.t + (100 - v) / 100 * (QH - QM.t - QM.b);
+    function zone(s) { if (s.part >= 50 && s.mas >= 55) return 0; if (s.part < 50 && s.mas >= 55) return 1; if (s.part >= 50 && s.mas < 55) return 2; return 3 }
+    const ZONE = [
+      { n: "Học tốt, nói nhiều", c: C.ok, bg: '#F0FDF4', t: "Nói nhiều, làm đúng. Cứ để các em kéo không khí lớp." },
+      { n: "Hiểu bài, ngại nói", c: C.navy, bg: '#EFF4FF', t: "Bài làm ổn nhưng chưa chịu mở miệng. Được gọi đúng câu vừa sức là trả lời được." },
+      { n: "Sôi nổi, hay sai", c: C.amber, bg: '#FFF7E8', t: "Rất chịu nói nhưng chia động từ còn sai nhiều. Chắc lại phần nền là bật lên nhanh." },
+      { n: "Cần kèm thêm", c: C.bad, bg: '#FEF2F2', t: "Vừa ít nói vừa sai nhiều. Nhóm này dễ bị trôi qua nếu chỉ nhìn không khí chung." }
+    ];
+    (function () {
+      const s = $('#quadSvg');
+      s.append(el('rect', { x: qx(50), y: qy(100), width: qx(100) - qx(50), height: qy(55) - qy(100), fill: '#F0FDF4' }));
+      s.append(el('rect', { x: qx(0), y: qy(100), width: qx(50) - qx(0), height: qy(55) - qy(100), fill: '#EFF4FF' }));
+      s.append(el('rect', { x: qx(50), y: qy(55), width: qx(100) - qx(50), height: qy(0) - qy(55), fill: '#FFF7E8' }));
+      s.append(el('rect', { x: qx(0), y: qy(55), width: qx(50) - qx(0), height: qy(0) - qy(55), fill: '#FEF2F2' }));
+      s.append(el('line', { x1: qx(50), y1: qy(100), x2: qx(50), y2: qy(0), stroke: '#C7D2E4', 'stroke-dasharray': '5 5' }));
+      s.append(el('line', { x1: qx(0), y1: qy(55), x2: qx(100), y2: qy(55), stroke: '#C7D2E4', 'stroke-dasharray': '5 5' }));
+      const lab = (t, X, Y, c, anc) => { const n = el('text', { x: X, y: Y, fill: c, 'font-size': 11.5, 'font-weight': 700, 'text-anchor': anc }); n.textContent = t; s.append(n) };
+      lab("Học tốt, nói nhiều", qx(98), qy(97), '#15803D', 'end');
+      lab("Hiểu bài, ngại nói", qx(2), qy(97), '#1E40AF', 'start');
+      lab("Sôi nổi, hay sai", qx(98), qy(4), '#B45309', 'end');
+      lab("Cần kèm thêm", qx(2), qy(4), '#DC2626', 'start');
+      const ax = el('text', { x: QW / 2, y: QH - 10, fill: '#64748B', 'font-size': 11.5, 'text-anchor': 'middle', 'font-weight': 600 }); ax.textContent = 'Mức tham gia (nói + bấm) →'; s.append(ax);
+      const ay = el('text', { x: -QH / 2 + 10, y: 15, fill: '#64748B', 'font-size': 11.5, 'text-anchor': 'middle', 'font-weight': 600, transform: 'rotate(-90)' }); ay.textContent = 'Mức nắm bài →'; s.append(ay);
+      STU.forEach((st, i) => {
+        const z = ZONE[zone(st)];
+        const c = el('circle', { class: 'qd', cx: qx(st.part), cy: qy(st.mas), r: 0, fill: z.c, opacity: .7, stroke: '#fff', 'stroke-width': 1.6 });
+        c.addEventListener('click', () => pick(i));
+        c.addEventListener('mouseenter', () => c.setAttribute('r', 10));
+        c.addEventListener('mouseleave', () => c.setAttribute('r', 4.5 + st.ans * 0.5));
+        s.append(c);
+        setTimeout(() => { c.style.transition = 'r .5s cubic-bezier(.3,1.4,.5,1)'; c.setAttribute('r', 4.5 + st.ans * 0.5) }, RM ? 0 : 260 + i * 30);
+      });
+    })();
+    function pick(i) {
+      const st = STU[i], z = ZONE[zone(st)];
+      $('#detail').innerHTML = `
+   <div style="display:flex;gap:14px;align-items:center">
+     <div class="avatar" style="background:${z.c}">${st.n.split(' ').pop()[0]}</div>
+     <div><h3 style="font-size:18px">${st.n}</h3>
+     <span class="tag" style="background:${z.bg};color:${z.c}">${z.n}</span></div>
+   </div>
+   <p style="font-size:13.8px;color:var(--muted);margin-top:14px">${z.t}</p>
+   <div style="margin-top:16px">
+     <div class="d-row"><span>Câu trả lời đúng</span><b class="num">${st.ans}/10</b></div>
+     <div class="d-row"><span>Lượt nói tiếng Anh</span><b class="num">${st.speak}</b></div>
+     <div class="d-row"><span>Nghĩ trung bình mỗi câu</span><b class="num">${st.time} giây</b></div>
+     <div class="d-row"><span>Bám theo bài giảng</span><b class="num">${st.focus}%</b></div>
+   </div>
+   <div style="margin-top:16px">
+     <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)"><span>Mức nắm bài</span><span class="num" style="font-weight:700;color:var(--ink)">${st.mas}%</span></div>
+     <div class="bar"><i style="background:${z.c}"></i></div>
+     <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:12px"><span>Mức tham gia</span><span class="num" style="font-weight:700;color:var(--ink)">${st.part}%</span></div>
+     <div class="bar"><i style="background:${C.blue}"></i></div>
+   </div>`;
+      requestAnimationFrame(() => { const b = $$('#detail .bar i'); b[0].style.width = st.mas + '%'; b[1].style.width = st.part + '%' });
+    }
+    pick(0);
+
+    /* ============ 03 ITEM ANALYSIS ============ */
+    const QS = [
+      {
+        q: 'My sister usually <em>___</em> dinner at 7 p.m.', pct: 82, correct: 0, opts: [["A", "cooks", 28], ["B", "is cooking", 4], ["C", "cooked", 2], ["D", "has cooked", 0]],
+        note: "Còn 4 em chọn is cooking dù đề có usually. Khi chữa, nên cho các em khoanh tròn trạng từ trước rồi mới hỏi thì."
+      },
+      {
+        q: 'Listen! Someone <em>___</em> at the door.', pct: 79, correct: 1, opts: [["A", "knocks", 5], ["B", "is knocking", 27], ["C", "knocked", 2], ["D", "has knocked", 0]],
+        note: "Listen! là dấu hiệu khá lộ. 5 em chọn sai đều nằm trong nhóm chưa thuộc bảng dấu hiệu — trùng với nhóm sai câu 1."
+      },
+      {
+        q: 'I <em>___</em> this film three times.', pct: 44, correct: 1, trap: 0, opts: [["A", "saw", 19], ["B", "have seen", 15], ["C", "see", 0], ["D", "am seeing", 0]],
+        note: "19 em thấy chuyện đã qua là chọn saw. Gốc rễ là tiếng Việt không chia thì nên các em dịch nghĩa, chưa nhìn dấu hiệu. Three times là trải nghiệm tính đến hiện tại, phải là have seen. Chỗ này đáng dành hẳn 10 phút ở tiết sau."
+      },
+      {
+        q: 'We <em>___</em> to Ha Long Bay last summer.', pct: 71, correct: 1, trap: 0, opts: [["A", "have gone", 9], ["B", "went", 24], ["C", "go", 1], ["D", "were going", 0]],
+        note: "9 em chọn have gone — sai ngược với câu 3: vừa học hoàn thành xong nên lạm dụng. Có last summer thì phải quay về quá khứ đơn."
+      },
+      {
+        q: 'My father <em>___</em> for this company since 2010.', pct: 62, correct: 0, trap: 1, opts: [["A", "has worked", 21], ["B", "worked", 8], ["C", "works", 5], ["D", "is working", 0]],
+        note: "8 em chọn worked, 5 em chọn works. Cả hai nhóm đều chưa bắt được since — từ 2010 đến giờ vẫn đang làm, nên dùng has worked."
+      },
+      {
+        q: 'They <em>___</em> lunch yet.', pct: 74, correct: 0, opts: [["A", "haven't had", 25], ["B", "didn't have", 6], ["C", "don't have", 3], ["D", "aren't having", 0]],
+        note: "Yet đứng cuối câu phủ định là dấu hiệu của hoàn thành. 6 em chọn didn't have cũng chính là nhóm sai câu 3 — cùng một lỗ hổng, chữa một lần là gỡ được cả hai câu."
+      }
+    ];
+    $('#qList').innerHTML = QS.map((q, i) => {
+      const tot = q.opts.reduce((a, o) => a + o[2], 0);
+      const col = q.pct >= 78 ? C.ok : q.pct >= 60 ? '#B45309' : C.bad;
+      return `<div class="q-item" data-i="${i}">
+    <button class="q-head" aria-expanded="false"><div class="q-num num">${i + 1}</div><div class="q-txt">${q.q}</div><div class="q-pct num" style="color:${col}">${q.pct}%</div></button>
+    <div class="q-body"><div class="q-in">
+      ${q.opts.map((o, k) => `<div class="opt ${k === q.correct ? 'correct' : (k === q.trap ? 'trap' : '')}">
+        <div class="opt-key">${o[0]}</div>
+        <div class="opt-txt">${o[1]}</div>
+        <div class="opt-bar"><i data-w="${Math.round(o[2] / tot * 100)}" style="background:${k === q.correct ? C.ok : (k === q.trap ? C.amber : '#CBD5E1')}"></i></div>
+        <div class="opt-n num">${o[2]} em · ${Math.round(o[2] / tot * 100)}%</div>
+      </div>`).join('')}
+      <div class="q-note">${q.note}</div>
+    </div></div>
+  </div>`;
+    }).join('');
+    $$('.q-head').forEach(h => h.addEventListener('click', () => {
+      const it = h.parentElement, was = it.classList.contains('open');
+      $$('.q-item').forEach(o => { o.classList.remove('open'); $('.q-head', o).setAttribute('aria-expanded', 'false') });
+      if (!was) {
+        it.classList.add('open'); h.setAttribute('aria-expanded', 'true');
+        setTimeout(() => $$('.opt-bar i', it).forEach((b, k) => setTimeout(() => b.style.width = b.dataset.w + '%', k * 70)), 60)
+      }
+    }));
+    setTimeout(() => $$('.q-head')[2].click(), RM ? 0 : 1400);
+
+    /* ============ 04 EQUITY ============ */
+    const VOICE = [9, 8, 7, 7, 6, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0];
+    $('#eqBars').innerHTML = VOICE.map((v, i) => {
+      const c = v === 0 ? '#FCA5A5' : v <= 2 ? '#FCD34D' : v <= 5 ? C.blueL : C.navy;
+      return `<i data-h="${Math.max(4, v / 9 * 100)}" style="background:${c};transition-delay:${i * 20}ms" title="${v} lượt nói"></i>`;
+    }).join('');
+    new IntersectionObserver((e, o) => {
+      if (e[0].isIntersecting) {
+        $$('#eqBars i').forEach(b => b.style.height = b.dataset.h + '%'); o.disconnect()
+      }
+    }, { threshold: .35 }).observe($('#eqBars'));
+
+    /* ============ 05 WATCHLIST ============ */
+    const WATCH = [
+      { n: "Ung Thảo Nhi", c: C.bad, why: "Cả tiết không nói câu tiếng Anh nào, 6 câu quiz cuối cũng bỏ trống.", do: "Đầu giờ sau gọi em đọc một câu mẫu dễ, báo trước để em kịp chuẩn bị." },
+      { n: "Bùi Quốc Anh", c: '#D97706', why: "Giơ tay 5 lần, rất chịu nói, nhưng chỉ đúng 3/10 câu — toàn nhầm động từ bất quy tắc.", do: "Giao bảng 20 động từ bất quy tắc, kiểm tra miệng hôm thứ Năm." },
+      { n: "Cao Đức Duy", c: C.bad, why: "Từ phút 20 gần như không bấm gì nữa. Bài Câu bị động tuần trước em cũng rời sớm kiểu này.", do: "Hỏi riêng xem em đang vướng gì, có khi không phải chuyện môn học." },
+      { n: "Tô Hoàng Long", c: '#D97706', why: "Bấm nhanh nhất lớp, trung bình 5 giây một câu, nhưng sai 6 câu. Nhiều khả năng em đoán.", do: "Lần tới yêu cầu em nói lý do chọn đáp án, thay vì chỉ bấm." },
+      { n: "Hồ Diệu Linh", c: C.navy, why: "Đúng 9/10, cao nhất lớp, nhưng chưa từng giơ tay.", do: "Mời em chữa câu số 3 trước lớp — em làm đúng câu đó." }
+    ];
+    $('#watch').innerHTML = WATCH.map(w => `<div class="wl-item" style="--c:${w.c}">
+  <div class="wl-name">${w.n}</div><div class="wl-why">${w.why}</div><div class="wl-do">→ ${w.do}</div>
+</div>`).join('');
+
+    /* ============ 06 SERIES ============ */
+    const SER = {
+      acc: { n: "Tỉ lệ đúng", c: C.navy, v: [58, 63, 60, 66, 68, 71], note: "Sáu tiết nhích lên khá đều, chỉ tiết 08/08 tụt nhẹ vì trùng hôm kiểm tra 15 phút. Mức 71% hôm nay là cao nhất từ đầu học kỳ." },
+      speak: { n: "Số em chịu nói", c: '#0F766E', v: [41, 50, 56, 65, 71, 79], note: "Từ hôm lớp bắt đầu chơi ghép cặp (tiết 12/08), số em chịu mở miệng nói tiếng Anh tăng gần gấp rưỡi — hôm nay là 27/34 em. Với môn này, đây là con số đáng giữ nhất." },
+      focus: { n: "Mức bám bài", c: '#B45309', v: [68, 70, 67, 73, 74, 76], note: "Bám bài đi ngang quanh 67–76%. Đoạn trũng giữa tiết lặp lại ở cả sáu tiết, lần nào cũng rơi vào lúc giảng lý thuyết dài." }
+    };
+    $('#serTabs').innerHTML = Object.entries(SER).map(([k, v]) => `<button class="tab ${k === 'acc' ? 'on' : ''}" data-k="${k}">${v.n}</button>`).join('');
+    const SW = 560, SH = 280, SM = { t: 24, r: 16, b: 38, l: 38 };
+    const sx = i => SM.l + i * (SW - SM.l - SM.r) / 5, sy = v => SM.t + (100 - v) / 100 * (SH - SM.t - SM.b);
+    function drawSer(k) {
+      const s = $('#serSvg'), d = SER[k]; s.innerHTML = '';
+      [40, 60, 80, 100].forEach(v => {
+        s.append(el('line', { x1: SM.l, y1: sy(v), x2: SW - SM.r, y2: sy(v), stroke: '#EEF2F7' }));
+        const t = el('text', { x: SM.l - 8, y: sy(v) + 4, fill: '#B6C2D4', 'font-size': 10, 'text-anchor': 'end' }); t.textContent = v; s.append(t);
+      });
+      const line = d.v.map((v, i) => `${i ? 'L' : 'M'}${sx(i)},${sy(v)}`).join(' ');
+      const ar = el('path', { d: line + ` L${sx(5)},${sy(40)} L${sx(0)},${sy(40)} Z`, fill: d.c, opacity: .07 }); s.append(ar);
+      const p = el('path', { d: line, fill: 'none', stroke: d.c, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }); s.append(p);
+      const L = p.getTotalLength();
+      if (!RM) {
+        p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+        requestAnimationFrame(() => { p.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(.3,.8,.3,1)'; p.style.strokeDashoffset = 0 });
+      }
+      const DATES = ["28/07", "04/08", "08/08", "12/08", "19/08", "Hôm nay"];
+      d.v.forEach((v, i) => {
+        const last = i === 5;
+        const c = el('circle', { cx: sx(i), cy: sy(v), r: 0, fill: '#fff', stroke: d.c, 'stroke-width': last ? 4 : 2.6 });
+        s.append(c); setTimeout(() => { c.style.transition = 'r .35s'; c.setAttribute('r', last ? 7 : 4.5) }, RM ? 0 : 300 + i * 130);
+        const t = el('text', { x: sx(i), y: sy(v) - 15, fill: last ? d.c : '#94A3B8', 'font-size': last ? 12.5 : 11, 'font-weight': last ? 800 : 500, 'text-anchor': 'middle', opacity: 0 });
+        t.textContent = v + '%'; s.append(t);
+        setTimeout(() => { t.style.transition = 'opacity .4s'; t.setAttribute('opacity', 1) }, RM ? 0 : 420 + i * 130);
+        const lb = el('text', { x: sx(i), y: SH - 12, fill: last ? '#16233F' : '#94A3B8', 'font-size': 10.5, 'text-anchor': 'middle', 'font-weight': last ? 800 : 500 });
+        lb.textContent = DATES[i]; s.append(lb);
+      });
+      $('#serNote').textContent = d.note;
+    }
+    new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { drawSer('acc'); o.disconnect() } }, { threshold: .3 }).observe($('#serSvg'));
+    $$('#serTabs .tab').forEach(b => b.addEventListener('click', () => {
+      $$('#serTabs .tab').forEach(x => x.classList.remove('on')); b.classList.add('on'); drawSer(b.dataset.k);
+    }));
+  </script>
+</body>
+
+</html>
